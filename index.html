@@ -23,6 +23,22 @@
         font-family: "VT323", monospace;
       }
 
+      .blog {
+        margin: 40px;
+        text-align: center;
+        vertical-align: center;
+
+      }
+
+      .blog-header  {
+        padding: 5px;
+        text-align: center;
+        vertical-align: center;
+      }
+
+      .blog-entry {
+      }
+
       .container {
         max-width: 800px;
         margin: 0 auto;
@@ -56,6 +72,10 @@
         padding: 30px;
       }
 
+      article {
+        padding: 10px;
+      }
+
       .logo {
         padding: 5px;
         width: 20;
@@ -76,11 +96,43 @@
         Ahlan to Feras Aldahlawi personal page
       </h2>       
 
-      <marquee class="marquee" behavior="scroll" direction="left">
-      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/archive/7/7e/20221017173629%21Gmail_icon_%282020%29.svg" width="20"/><a href="mailto:feras@chromium.org">feras@chromium.org</a>
-      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" width="20"/><a href="twitter.com/_ferasd">@_ferasd</a>
-      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" width="20"/><a href="https://www.linkedin.com/in/ferasd">ferasd</a>
-      </marquee>
+    <marquee class="marquee" behavior="scroll" direction="left">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/archive/7/7e/20221017173629%21Gmail_icon_%282020%29.svg" width="20"/><a href="mailto:feras@chromium.org">feras@chromium.org</a>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" width="20"/><a href="twitter.com/_ferasd">@_ferasd</a>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" width="20"/><a href="https://www.linkedin.com/in/ferasd">ferasd</a>
+    </marquee>
     </div>
+    <section>
+      <div class="blog">
+        <article>
+          <details>
+            <summary class="blog-header">
+              Is LeetCode a good indicator for SWE interviews?
+            </summary>
+            <p class="blog-entry container">
+            No and yes. No, it does not represent most of the day to day work.
+            And yes, it represents sitting for long time in front of a screen
+            thinking. And that is mostly what you are going to do in 'Big Tech'.<br/><br/>
+
+            We as software engineers should appreciate that we have a clear
+            recipe on how to do well in 'Big Tech' interviews.
+            </p>
+          </details>
+        </article>
+
+        <article>
+          <details>
+            <summary class="blog-header">
+              My 2 Riyals on the static vs dynamic typing DHH debate
+            </summary>
+            <p class="blog-entry container">
+            Firstly, who cares!<br/><br/>
+            Secondly, you have to treat OSS with risk. Risk of changing anytime
+            in a way you would not like.
+            </p>
+          </details>
+        </article>
+      </div>
+    </section>
   </body>
 </html>
