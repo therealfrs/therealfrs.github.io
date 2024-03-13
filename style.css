@@ -20,7 +20,7 @@ h2 {
 .calendar {
   display: block;
   margin: 5px auto;
-  height: 20px;
+  height: 40px;
   width: 100px;
   font-family: "VT323", monospace;
 }
