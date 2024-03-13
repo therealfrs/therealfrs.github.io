@@ -17,11 +17,15 @@ h2 {
   font-family: "VT323", monospace;
 }
 
+.calendar {
+  text-align: center;
+  vertical-align: center;
+}
+
 .blog {
   margin: 40px;
   text-align: center;
   vertical-align: center;
-
 }
 
 .blog-header  {
