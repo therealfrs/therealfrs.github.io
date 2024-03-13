@@ -18,16 +18,19 @@ h2 {
 }
 
 .calendar {
-  margin: 5px;
+  display: block;
+  margin: 5px auto;
+  height: 20px;
+  width: 100px;
   font-family: "VT323", monospace;
-  text-align: center;
-  vertical-align: center;
 }
 
+
 .blog {
-  margin: 40px;
+  margin: 20px;
   text-align: center;
   vertical-align: center;
+  visibility: hidden;
 }
 
 .blog-header  {
