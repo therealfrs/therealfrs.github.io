@@ -18,6 +18,8 @@ h2 {
 }
 
 .calendar {
+  margin: 5px;
+  font-family: "VT323", monospace;
   text-align: center;
   vertical-align: center;
 }
