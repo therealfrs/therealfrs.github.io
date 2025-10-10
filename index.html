@@ -61,13 +61,40 @@
     </section>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HF0QQE6EX6" defer></script>
-<script defer>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script>
+  let gtagLoaded = false;
+  const loadGtag = () => {
+    if (gtagLoaded) return;
+    gtagLoaded = true;
 
-  gtag('config', 'G-HF0QQE6EX6');
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HF0QQE6EX6';
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HF0QQE6EX6');
+    };
+
+    // Clean up listeners and timeout
+    window.removeEventListener('scroll', loadGtag);
+    window.removeEventListener('mousemove', loadGtag);
+    window.removeEventListener('touchstart', loadGtag);
+    if (fallbackTimeout) {
+        clearTimeout(fallbackTimeout);
+    }
+  };
+
+  // Load on user interaction
+  window.addEventListener('scroll', loadGtag, { once: true });
+  window.addEventListener('mousemove', loadGtag, { once: true });
+  window.addEventListener('touchstart', loadGtag, { once: true });
+
+  // Fallback to load after a delay if no interaction
+  const fallbackTimeout = setTimeout(loadGtag, 3000);
 </script>
 
   </body>
