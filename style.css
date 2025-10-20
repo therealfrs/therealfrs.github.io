@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Aref Ruqaa';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/aref-ruqaa.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/vt323.woff2) format('woff2');
+}
+
 .arabic {
   font-family: "Aref Ruqaa", serif;
 }
@@ -73,9 +89,14 @@ a:hover {
 
 ul{
   padding: 30px;
-  text-align: center;
-  vertical-align: center;
+  margin: 0 auto;
   list-style-type: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 article {
@@ -85,5 +106,5 @@ article {
 .logo {
   padding: 5px;
   width: 20;
-  vertical-align:bottom;
+  vertical-align:middle;
 }
