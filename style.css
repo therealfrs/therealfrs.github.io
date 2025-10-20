@@ -17,10 +17,16 @@
 .arabic {
   font-family: "Aref Ruqaa", serif;
 }
+
 .code {
   font-family: "VT323", monospace;
   text-align: center;
   vertical-align: center;
+}
+
+.about {
+  font-family: "VT323", monospace;
+  font-size: 30px;
 }
 
 h1 {
