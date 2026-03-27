@@ -1,21 +1,56 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Blog</title>
-  <link rel="stylesheet" type="text/css" href="../style.css">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Blog posts by Feras Aldahlawi (frs)." />
+    <title>Feras's Blog - Forum | المدونة</title>
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class="forum-container">
+      <div class="forum-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <span>Feras's Personal Message Board</span>
+        <span class="arabic" style="font-size: 16px;">لوحة رسائل فراس الدهلوي الشخصية</span>
+      </div>
+      
+      <div class="forum-cat-bar">
+        <div style="display: flex; justify-content: space-between;">
+          <span>Board Index &raquo; General Discussion &raquo; Blog</span>
+          <span class="arabic-modern" dir="rtl">فهرس اللوحة &raquo; مناقشة عامة &raquo; المدونة</span>
+        </div>
+      </div>
 
-</head>
-<body>
-  <header>
-    <h1 class="arabic">
-      مدونتي
-    </h1>
-  </header>
-  <div class="container">
-    <h2>Blog Posts</h2>
-    <ul>
-      <li><a href="blog_post_1.html">Blog Post</a></li>
-    </ul>
-  </div>
-</body>
+      <!-- Header for the topic list -->
+      <div class="forum-cat-bar" style="background-color: #d1d7dc; color: #003399; display: flex; justify-content: space-between;">
+        <span>Topics</span>
+        <span>Replies / Views</span>
+      </div>
+
+      <!-- Topic Rows -->
+      <div class="forum-row" style="background-color: #ffffff; padding: 10px; display: flex; justify-content: space-between; border-bottom: 1px solid #cccccc;">
+        <div style="display: flex; align-items: center;">
+          <span class="new-post-icon"></span>
+          <div style="margin-left: 10px;">
+            <a href="blog_post_1.html" style="font-weight: bold; font-size: 14px;">Blog Post 1</a><br>
+            <span style="font-size: 10px; color: #666;">by frs &raquo; Friday, March 27, 2026</span>
+          </div>
+        </div>
+        <div style="text-align: right; font-size: 11px; color: #666;">
+          0 / 1337
+        </div>
+      </div>
+
+      <div style="padding: 10px; border-top: 1px solid #999;">
+        <div style="display: flex; gap: 10px;">
+          <a href="../index.html" class="btn-forum">&laquo; Back to Forum Home</a>
+          <a href="../index.html" class="btn-forum" style="font-family: 'Tahoma';">&laquo; العودة للرئيسية</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px; font-size: 10px; color: #999;">
+      Made in Seattle &copy; 2026
+    </div>
+  </body>
 </html>
