@@ -165,6 +165,62 @@ a:hover {
   font-size: 18px;
 }
 
+.arabic-modern {
+  font-family: "Tahoma", "Arial", "Simplified Arabic", sans-serif;
+  font-size: 14px;
+}
+
+.forum-post-content {
+  font-family: "Verdana", "Arial", "Tahoma", sans-serif;
+  color: #333;
+  background: #fff;
+  padding: 20px;
+  border: 1px inset #ccc;
+  line-height: 1.6;
+}
+
+.forum-post-content h1 {
+  font-size: 22px;
+  border-bottom: 2px solid #003399;
+  color: #003399;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.forum-post-content h2 {
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.forum-post-content h3 {
+  font-size: 16px;
+  color: #003399;
+  margin-top: 15px;
+}
+
+.forum-post-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.forum-post-content li {
+  margin-bottom: 5px;
+  font-size: 13px;
+  display: list-item;
+  text-align: left;
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
 .btn-forum {
   display: inline-block;
   padding: 5px 10px;
