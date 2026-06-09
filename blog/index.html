@@ -4,53 +4,71 @@
     <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Blog posts by Feras Aldahlawi (frs)." />
-    <title>Feras's Blog - Forum | المدونة</title>
+    <title>Feras's Blog - Academic Notes | المدونة</title>
     <link rel="stylesheet" href="../style.css">
   </head>
   <body>
-    <div class="forum-container">
-      <div class="forum-header" style="display: flex; justify-content: space-between; align-items: center;">
-        <span>Feras's Personal Message Board</span>
-        <span class="arabic" style="font-size: 16px;">لوحة رسائل فراس الدهلوي الشخصية</span>
-      </div>
+    <div class="academic-container">
+      <header class="academic-header">
+        <div class="header-title-row">
+          <h1>Feras Aldahlawi</h1>
+          <span class="arabic">فراس الدهلوي</span>
+        </div>
+        <p class="header-subtitle">Software Engineer</p>
+      </header>
       
-      <div class="forum-cat-bar">
-        <div style="display: flex; justify-content: space-between;">
-          <span>Board Index &raquo; General Discussion &raquo; Blog</span>
-          <span class="arabic-modern" dir="rtl">فهرس اللوحة &raquo; مناقشة عامة &raquo; المدونة</span>
-        </div>
-      </div>
+      <nav class="academic-nav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../podcast.html">Podcasts</a>
+        <a href="../user_manual.html">User Manual</a>
+        <a href="index.html" class="active">Blog</a>
+      </nav>
 
-      <!-- Header for the topic list -->
-      <div class="forum-cat-bar" style="background-color: #d1d7dc; color: #003399; display: flex; justify-content: space-between;">
-        <span>Topics</span>
-        <span>Replies / Views</span>
-      </div>
+      <div class="academic-layout">
+        <aside class="academic-sidebar">
 
-      <!-- Topic Rows -->
-      <div class="forum-row" style="background-color: #ffffff; padding: 10px; display: flex; justify-content: space-between; border-bottom: 1px solid #cccccc;">
-        <div style="display: flex; align-items: center;">
-          <span class="new-post-icon"></span>
-          <div style="margin-left: 10px;">
-            <a href="blog_post_1.html" style="font-weight: bold; font-size: 14px;">Blog Post 1</a><br>
-            <span style="font-size: 10px; color: #666;">by frs &raquo; Friday, March 27, 2026</span>
+          <div class="sidebar-section">
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:frs@chromium.org">frs@chromium.org</a></p>
+            <div style="margin-top: 15px;">
+              <a href="https://calendar.app.google/Po5uBfEutynhExWj8" target="_blank" class="btn-academic">Schedule Meeting</a>
+            </div>
           </div>
-        </div>
-        <div style="text-align: right; font-size: 11px; color: #666;">
-          0 / 1337
-        </div>
+        </aside>
+
+        <main class="academic-main">
+          <h2>Technical Blog & Notes</h2>
+          <p>
+            A collection of engineering articles, notes, and thoughts on media player software, content protection systems, and cryptography.
+          </p>
+
+          <div style="margin-top: 30px;">
+            <ul style="list-style-type: none; padding-left: 0;">
+              <li style="margin-bottom: 25px; border-bottom: 1px solid #e9e9e9; padding-bottom: 15px;">
+                <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #777; margin-bottom: 5px;">
+                  March 27, 2026 &mdash; Written by frs
+                </div>
+                <h3 style="margin: 0 0 8px 0; font-size: 20px;">
+                  <a href="blog_post_1.html" style="text-decoration: none;">Blog Post 1: Introduction to Web Cryptography & CDM</a>
+                </h3>
+                <p style="margin: 0; font-size: 14px; color: #555;">
+                  A brief discussion introducing the basics of browser Content Decryption Modules (CDM) and their integration with Encrypted Media Extensions (EME).
+                </p>
+              </li>
+            </ul>
+          </div>
+          
+          <div style="margin-top: 35px; border-top: 1px solid #e9e9e9; padding-top: 20px;">
+            <a href="../index.html" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">&laquo; Back to Home</a>
+          </div>
+        </main>
       </div>
 
-      <div style="padding: 10px; border-top: 1px solid #999;">
-        <div style="display: flex; gap: 10px;">
-          <a href="../index.html" class="btn-forum">&laquo; Back to Forum Home</a>
-          <a href="../index.html" class="btn-forum" style="font-family: 'Tahoma';">&laquo; العودة للرئيسية</a>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px; font-size: 10px; color: #999;">
-      Made in Seattle &copy; 2026
+      <footer class="academic-footer">
+        <p>Made in Seattle &copy; 2026</p>
+      </footer>
     </div>
   </body>
 </html>

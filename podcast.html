@@ -4,80 +4,107 @@
     <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Podcasts by Feras Aldahlawi (frs)." />
-    <title>Feras's Podcasts - Forum | البودكاست</title>
+    <title>Feras's Podcasts - Academic Home | البودكاست</title>
     <link rel="stylesheet" href="style.css">
     <style>
-      .redcircle-link:link { color: #ea404d; text-decoration: none; }
-      .redcircle-link:hover { color: #ea404d; }
-      .redcircle-link:active { color: #ea404d; }
-      .redcircle-link:visited { color: #ea404d; }
+      .redcircle-link:link { color: #800000; text-decoration: none; }
+      .redcircle-link:hover { color: #d11a2a; }
+      .redcircle-link:active { color: #800000; }
+      .redcircle-link:visited { color: #800000; }
+      
+      .podcast-container {
+        margin-bottom: 25px;
+        background: #ffffff;
+        padding: 15px;
+        border: 1px solid #e9e9e9;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+      }
     </style>
   </head>
   <body>
-    <div class="forum-container">
-      <div class="forum-header" style="display: flex; justify-content: space-between; align-items: center;">
-        <span>Feras's Personal Message Board</span>
-        <span class="arabic" style="font-size: 16px;">لوحة رسائل فراس الدهلوي الشخصية</span>
-      </div>
+    <div class="academic-container">
+      <header class="academic-header">
+        <div class="header-title-row">
+          <h1>Feras Aldahlawi</h1>
+          <span class="arabic">فراس الدهلوي</span>
+        </div>
+        <p class="header-subtitle">Software Engineer</p>
+      </header>
       
-      <div class="forum-cat-bar">
-        <div style="display: flex; justify-content: space-between;">
-          <span>Board Index &raquo; Media &raquo; Podcasts</span>
-          <span class="arabic-modern" dir="rtl">فهرس اللوحة &raquo; وسائط &raquo; البودكاست</span>
-        </div>
-      </div>
+      <nav class="academic-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="podcast.html" class="active">Podcasts</a>
+        <a href="user_manual.html">User Manual</a>
+        <a href="blog/index.html">Blog</a>
+      </nav>
 
-      <div class="forum-row">
-        <div class="user-col">
-          <div class="user-name">frs</div>
-          <div class="user-avatar">👤</div>
-          <div class="user-title">Senior Poster</div>
-          <div class="arabic">فراس الدهلوي</div>
-          <div style="margin-top: 10px;">
-            Posts: 1,337<br>
-            Joined: Feb. 1991<br>
-            Location: Seattle, Washington
-          </div>
-        </div>
-        
-        <div class="post-col">
-          <div class="post-date">Posted: Friday, March 27, 2026 12:00 AM</div>
-          <div class="post-content">
-            <h2 style="font-size: 16px; margin: 0 0 10px 0;">[Audio] My Podcast Appearances | مشاركاتي في البودكاست</h2>
-            
-            <div class="forum-post-content">
-              <div class="arabic-modern" dir="rtl" style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
-                <p>إليكم بعض الحلقات التي شاركت فيها أو قمت بتسجيلها. أتمنى أن تجدوا فيها الفائدة والمتعة.</p>
-              </div>
+      <div class="academic-layout">
+        <aside class="academic-sidebar">
 
-              <div style="margin-bottom: 20px; background: #fff; padding: 10px; border: 1px inset #ccc;">
-                <script async defer onload="redcircleIframe();" src="https://api.podcache.net/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9382b9b1-c10a-4614-b90d-77a0123b41eb"></script>
-                <div class="redcirclePlayer-9382b9b1-c10a-4614-b90d-77a0123b41eb"></div>
-              </div>
-
-              <div style="margin-bottom: 20px; background: #fff; padding: 10px; border: 1px inset #ccc;">
-                <script async defer onload="redcircleIframe();" src="https://api.podcache.net/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/ea147a02-709f-43bb-b6ca-2b328ea12e64"></script>
-                <div class="redcirclePlayer-ea147a02-709f-43bb-b6ca-2b328ea12e64"></div>
-              </div>
-
-              <div style="margin-bottom: 20px; background: #fff; padding: 10px; border: 1px inset #ccc;">
-                <script async defer onload="redcircleIframe();" src="https://api.podcache.net/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/40241f9b-9ff6-46dd-abaf-dd2993723c89"></script>
-                <div class="redcirclePlayer-40241f9b-9ff6-46dd-abaf-dd2993723c89"></div>
-              </div>
-
-              <div style="margin-bottom: 20px; background: #fff; padding: 10px; border: 1px inset #ccc;">
-                <script async defer onload="redcircleIframe();" src="https://api.podcache.net/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/fb917d74-30b5-4f44-96cf-1decf0e81f8f"></script>
-                <div class="redcirclePlayer-fb917d74-30b5-4f44-96cf-1decf0e81f8f"></div>
-              </div>
-            </div>
-            
-            <div style="margin: 20px 0; display: flex; gap: 10px;">
-              <a href="index.html" class="btn-forum">&laquo; Back to Forum Home</a>
-              <a href="index.html" class="btn-forum" style="font-family: 'Tahoma';">&laquo; العودة للرئيسية</a>
+          <div class="sidebar-section">
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:frs@chromium.org">frs@chromium.org</a></p>
+            <div style="margin-top: 15px;">
+              <a href="https://calendar.app.google/Po5uBfEutynhExWj8" target="_blank" class="btn-academic">Schedule Meeting</a>
             </div>
           </div>
-        </div>
+        </aside>
+
+        <main class="academic-main">
+          <h2>Podcast Appearances | مشاركاتي في البودكاست</h2>
+          
+          <div class="bilingual-block">
+            <p>
+              Here are some of the podcast episodes and audio discussions I have participated in or recorded.
+            </p>
+            <div class="arabic-section arabic-modern" dir="rtl">
+              <p>إليكم بعض الحلقات التي شاركت فيها أو قمت بتسجيلها. أتمنى أن تجدوا فيها الفائدة والمتعة.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 30px;">
+            <div class="podcast-container">
+              <h3 style="font-size: 14px; margin-bottom: 8px;">عن الذكاء الاصطناعي ونهاية المبرمجين</h3>
+              <iframe style="border: none; max-width: 100%; width: 1px; min-width: 100%;" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9aea422f-d64f-4a8f-a58b-a7dedb52fd65"></iframe>
+            </div>
+
+            <div class="podcast-container">
+              <h3 style="font-size: 14px; margin-bottom: 8px;">تخرجت وما تعرف "قت"؟</h3>
+              <iframe style="border: none; max-width: 100%; width: 1px; min-width: 100%;" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/b23fe0e1-4b42-4191-81a6-2b307be43b53"></iframe>
+            </div>
+
+            <div class="podcast-container">
+              <h3 style="font-size: 14px; margin-bottom: 8px;">مع علي بوصالح</h3>
+              <iframe style="border: none; max-width: 100%; width: 1px; min-width: 100%;" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9382b9b1-c10a-4614-b90d-77a0123b41eb"></iframe>
+            </div>
+
+            <div class="podcast-container">
+              <h3 style="font-size: 14px; margin-bottom: 8px;">Google I/O and OpenAI events</h3>
+              <iframe style="border: none; max-width: 100%; width: 1px; min-width: 100%;" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/ea147a02-709f-43bb-b6ca-2b328ea12e64"></iframe>
+            </div>
+
+            <div class="podcast-container">
+              <h3 style="font-size: 14px; margin-bottom: 8px;">اجهزة الذكاء الاصطناعي الغبية ونتفلكس سنافر</h3>
+              <iframe style="border: none; max-width: 100%; width: 1px; min-width: 100%;" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/40241f9b-9ff6-46dd-abaf-dd2993723c89"></iframe>
+            </div>
+
+            <div class="podcast-container">
+              <h3 style="font-size: 14px; margin-bottom: 8px;">الموسم الثالث؟</h3>
+              <iframe style="border: none; max-width: 100%; width: 1px; min-width: 100%;" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/fb917d74-30b5-4f44-96cf-1decf0e81f8f"></iframe>
+            </div>
+          </div>
+          
+          <div style="margin-top: 35px; border-top: 1px solid #e9e9e9; padding-top: 20px;">
+            <a href="index.html" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">&laquo; Back to Home</a>
+          </div>
+        </main>
       </div>
+
+      <footer class="academic-footer">
+        <p>Made in Seattle &copy; 2026</p>
+      </footer>
     </div>
   </body>
 </html>

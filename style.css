@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(fonts/aref-ruqaa.woff2) format('woff2');
+  src: url('fonts/aref-ruqaa.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,237 +11,289 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(fonts/vt323.woff2) format('woff2');
+  src: url('fonts/vt323.woff2') format('woff2');
 }
 
+/* Base Styles */
 body {
-  background-color: #eeeeee; /* Light Forum Gray */
-  color: #333333;
-  font-family: "Verdana", "Arial", "Tahoma", sans-serif;
+  background-color: #f7f7f7;
+  color: #2b2b2b;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
   margin: 0;
-  padding: 10px;
+  padding: 20px 10px;
+  line-height: 1.6;
 }
 
-h1, h2, h3 {
-  font-weight: bold;
+h1, h2, h3, h4 {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+  font-weight: normal;
+  color: #800000; /* Maroon */
+  margin-top: 0;
 }
 
 a {
-  color: #003399; /* Forum Link Blue */
+  color: #800000; /* Maroon links */
   text-decoration: underline;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #cc3300; /* Forum Hover Orange/Red */
+  color: #d11a2a; /* Brighter maroon/red on hover */
 }
 
-/* Forum Board Styles */
-.forum-container {
-  max-width: 950px;
+/* Layout Container */
+.academic-container {
+  max-width: 1000px;
   margin: 0 auto;
-  border: 1px solid #999999;
   background-color: #ffffff;
-  padding: 0;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.forum-header {
-  background-color: #003399;
-  color: #ffffff;
-  padding: 10px 15px;
-  font-size: 18px;
-  font-weight: bold;
-  border-bottom: 1px solid #000000;
+/* Header */
+.academic-header {
+  padding: 30px 40px 20px;
+  border-bottom: 2px solid #800000;
 }
 
-.forum-cat-bar {
-  background-color: #8fa7c7;
-  color: #333;
-  padding: 5px 15px;
-  font-size: 12px;
-  font-weight: bold;
-  border-bottom: 1px solid #999999;
-}
-
-.forum-row {
+.header-title-row {
   display: flex;
-  border-bottom: 1px solid #cccccc;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.forum-row:nth-child(even) {
-  background-color: #f5f5f5;
+.header-title-row h1 {
+  font-size: 32px;
+  margin: 0;
+  color: #800000;
+  font-weight: normal;
 }
 
-.forum-row:nth-child(odd) {
-  background-color: #ffffff;
+.header-title-row .arabic {
+  font-family: 'Aref Ruqaa', serif;
+  font-size: 24px;
+  color: #555555;
 }
 
-/* User Profile Column */
-.user-col {
-  width: 180px;
-  background-color: #f2f2f2;
-  border-right: 1px solid #cccccc;
-  padding: 15px;
-  text-align: center;
-  font-size: 11px;
-}
-
-.user-avatar {
-  width: 80px;
-  height: 80px;
-  background-color: #cccccc;
-  border: 1px solid #999999;
-  margin: 0 auto 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-}
-
-.user-name {
-  font-weight: bold;
+.header-subtitle {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 14px;
-  color: #003399;
-  margin-bottom: 5px;
-}
-
-.user-title {
-  font-style: italic;
   color: #666666;
-  margin-bottom: 10px;
+  margin: 5px 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
-/* Post/Topic Content Column */
-.post-col {
-  flex: 1;
-  padding: 15px;
-  font-size: 13px;
-  line-height: 1.5;
+/* Navigation Bar */
+.academic-nav {
+  background-color: #800000;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  border-bottom: 1px solid #5a0000;
 }
 
-.post-date {
+.academic-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease;
+}
+
+.academic-nav a:hover,
+.academic-nav a.active {
+  background-color: #5a0000;
+  color: #ffffff;
+}
+
+/* Main Layout columns */
+.academic-layout {
+  display: flex;
+  min-height: 500px;
+}
+
+/* Sidebar */
+.academic-sidebar {
+  width: 260px;
+  background-color: #fcfcfc;
+  border-right: 1px solid #e9e9e9;
+  padding: 30px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  color: #444444;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.sidebar-section h3 {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 11px;
-  color: #999999;
-  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #800000;
+  border-bottom: 1px solid #e9e9e9;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #cccccc;
-}
-
-.post-content {
-  flex: 1;
-}
-
-.post-sig {
-  margin-top: 20px;
-  padding-top: 5px;
-  border-top: 1px solid #cccccc;
-  font-size: 11px;
-  color: #666666;
-}
-
-/* Board Stats */
-.board-stats {
-  margin-top: 20px;
-  border: 1px solid #999999;
-  background-color: #ffffff;
-}
-
-.stats-header {
-  background-color: #8fa7c7;
-  padding: 5px 15px;
-  font-size: 12px;
+  margin-bottom: 12px;
   font-weight: bold;
 }
 
-.stats-content {
-  padding: 10px 15px;
-  font-size: 11px;
+.sidebar-section p {
+  margin: 6px 0;
 }
 
-/* Miscellaneous */
-.arabic {
-  font-family: "Aref Ruqaa", serif;
+/* Main Area */
+.academic-main {
+  flex: 1;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.academic-main h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.academic-main h3 {
   font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.academic-main p {
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn-academic {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #800000;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid #800000;
+  border-radius: 2px;
+  text-align: center;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-academic:hover {
+  background-color: #ffffff;
+  color: #800000 !important;
+}
+
+/* Footer */
+.academic-footer {
+  text-align: center;
+  padding: 20px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  color: #888888;
+  border-top: 1px solid #e9e9e9;
+  background-color: #fafafa;
+}
+
+/* Utilities / Bilingual Content Styling */
+.arabic {
+  font-family: 'Aref Ruqaa', serif;
+  direction: rtl;
 }
 
 .arabic-modern {
   font-family: "Tahoma", "Arial", "Simplified Arabic", sans-serif;
-  font-size: 14px;
+  direction: rtl;
 }
 
-.forum-post-content {
-  font-family: "Verdana", "Arial", "Tahoma", sans-serif;
-  color: #333;
-  background: #fff;
-  padding: 20px;
-  border: 1px inset #ccc;
-  line-height: 1.6;
+.bilingual-block {
+  margin-bottom: 25px;
 }
 
-.forum-post-content h1 {
-  font-size: 22px;
-  border-bottom: 2px solid #003399;
-  color: #003399;
+.arabic-section {
+  border-top: 1px dashed #e0e0e0;
+  padding-top: 20px;
   margin-top: 20px;
-  margin-bottom: 10px;
 }
 
-.forum-post-content h2 {
-  font-size: 18px;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.forum-post-content h3 {
-  font-size: 16px;
-  color: #003399;
-  margin-top: 15px;
-}
-
-.forum-post-content ul {
-  list-style-type: disc;
+/* Lists and details */
+ul {
   padding-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.forum-post-content li {
+li {
+  margin-bottom: 8px;
+}
+
+/* For resume entries */
+.experience-entry, .education-entry {
+  margin-bottom: 25px;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 14px;
   margin-bottom: 5px;
+}
+
+.entry-subtitle {
+  font-style: italic;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 13px;
-  display: list-item;
-  text-align: left;
+  color: #555555;
+  margin-bottom: 10px;
 }
 
 .blink {
-  animation: blinker 1s linear infinite;
+  animation: blinker 1.5s linear infinite;
 }
 
 @keyframes blinker {
   50% { opacity: 0; }
 }
 
-.btn-forum {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: #eeeeee;
-  border: 1px solid #999999;
-  font-size: 11px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-  margin-top: 10px;
-}
-
-.btn-forum:hover {
-  background-color: #cccccc;
-}
-
-.new-post-icon {
-  width: 12px;
-  height: 12px;
-  background-color: #ff6600;
-  border: 1px solid #cc3300;
-  display: inline-block;
-  margin-right: 5px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .academic-layout {
+    flex-direction: column;
+  }
+  
+  .academic-sidebar {
+    width: auto;
+    border-right: none;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 20px 40px;
+  }
+  
+  .academic-header {
+    padding: 20px;
+  }
+  
+  .academic-main {
+    padding: 30px 20px;
+  }
+  
+  .header-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }
