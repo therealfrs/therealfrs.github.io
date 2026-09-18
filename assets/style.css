@@ -402,8 +402,114 @@ li {
 
 .post-body {
   margin-top: 25px;
-  line-height: 1.7;
-  font-size: 16px;
+  line-height: 1.75;
+  font-size: 15px;
+  color: #2b2b2b;
+}
+
+.post-body h2 {
+  font-size: 20px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 6px;
+}
+
+.post-body h3 {
+  font-size: 17px;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.post-body h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.post-body code {
+  background-color: #f4f1f1;
+  color: #800000;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.92em;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.post-body pre {
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-left: 3px solid #800000;
+  padding: 14px 16px;
+  overflow-x: auto;
+  line-height: 1.5;
+  margin: 20px 0;
+  border-radius: 2px;
+}
+
+.post-body pre code {
+  background-color: transparent;
+  color: #2b2b2b;
+  padding: 0;
+  font-size: 13px;
+}
+
+.post-body blockquote {
+  margin: 20px 0;
+  padding: 10px 18px;
+  border-left: 3px solid #800000;
+  background-color: #fcfafa;
+  color: #555555;
+  font-style: italic;
+}
+
+.post-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.post-body[dir="rtl"] blockquote {
+  border-left: none;
+  border-right: 3px solid #800000;
+}
+
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid #dcdcdc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.post-body[dir="rtl"] th,
+.post-body[dir="rtl"] td {
+  text-align: right;
+}
+
+.post-body th {
+  background-color: #f7f2f2;
+  color: #800000;
+  font-weight: bold;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border: 1px solid #e0e0e0;
+}
+
+.post-body hr {
+  border: none;
+  border-top: 1px dashed #dcdcdc;
+  margin: 30px 0;
 }
 
 /* Shared Callouts & Page Footer Navigation */
