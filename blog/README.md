@@ -29,7 +29,6 @@ date: 2026-09-18
 category: Cryptography & Media
 author: frs
 summary: "How we reduced encrypted video playback startup latency by 10.3x in Chrome Desktop."
-dir: ltr
 draft: false
 ---
 
@@ -56,7 +55,6 @@ void InitializeCdm() {
 | `category` | `Engineering` | Topic tag displayed next to the publication date. |
 | `author` | `frs` | Author name shown on `blog/index.html`. |
 | `summary` | First 180 chars of post | Short description shown under the title on `blog/index.html`. |
-| `dir` | `ltr` | Set to `ltr` for English posts, or `rtl` for Arabic posts (automatically applies right-to-left layout and Arabic typography). |
 | `draft` | `false` | Set to `true` while working on a draft so `build_blog.py` skips publishing it. Set back to `false` when ready. |
 
 ---

@@ -8,7 +8,6 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 - **Markdown Blog Workflow**: Blog posts are written in Markdown inside `blog/posts/*.md` and compiled locally into styled HTML pages (`blog/*.html` and `blog/index.html`) via `python3 scripts/build_blog.py`.
 - **Root-Relative Links**: All pages (`/*.html` and `/blog/*.html`) use root-relative paths (`/assets/style.css`, `/favicon.ico`, `/index.html`, `/about.html`, `/blog/index.html`) so boilerplate blocks remain identical at any directory depth.
 - **Shared Layout Sync**: `scripts/sync_layout.py` is the single source of truth for the shared `<header>`, `<nav>`, `<aside>`, and `<footer>` blocks across all HTML pages.
-- **Bilingual Support**: Primary pages feature bilingual content in **English** (LTR) and **Arabic** (RTL, `dir="rtl"`).
 - **VCS**: Managed with Jujutsu (`jj`) / Git.
 
 ---
@@ -17,16 +16,15 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 
 | Path | Description |
 | :--- | :--- |
-| `index.html` | Home page with welcome text, bilingual quick navigation, JSON-LD `Person` schema, and deferred Google Analytics (`G-HF0QQE6EX6`). |
-| `about.html` | Biographical and career summary in English and Arabic. |
-| `resume.html` | Full Curriculum Vitae / Resume in English and Arabic, plus links to the live Google Doc. |
+| `index.html` | Home page with welcome text, quick navigation, JSON-LD `Person` schema, and deferred Google Analytics (`G-HF0QQE6EX6`). |
+| `about.html` | Biographical and career summary. |
+| `resume.html` | Full Curriculum Vitae / Resume, plus link to the live Google Doc. |
 | `podcast.html` | Embedded RedCircle audio players for podcast appearances. |
-| `user_manual.html` | "Working with Feras" personal user manual in English and Arabic, plus links to the live document. |
+| `user_manual.html` | "Working with Feras" personal user manual, plus link to the live document. |
 | `blog/posts/*.md` | **Markdown source files** for blog posts (with YAML frontmatter). Edit or create posts here. |
 | `blog/index.html` | Auto-generated technical blog index listing published articles. |
 | `blog/<slug>.html` | Auto-generated standalone blog post pages built from `blog/posts/<slug>.md`. |
-| `assets/style.css` | Global stylesheet defining the academic monospace theme, layout grid, bilingual typography, Markdown `.post-body` styles, and mobile responsiveness. |
-| `assets/fonts/` | Self-hosted `.woff2` font (`aref-ruqaa.woff2` for traditional Arabic headers) and license. |
+| `assets/style.css` | Global stylesheet defining the academic monospace theme, layout grid, typography, Markdown `.post-body` styles, and mobile responsiveness. |
 | `scripts/build_blog.py` | Compiles `blog/posts/*.md` into `blog/<slug>.html` and updates `blog/index.html`. Supports `--new <slug> ["Title"]` and `--check`. |
 | `scripts/sync_layout.py` | Synchronizes the shared header, navigation bar, sidebar, and footer across all `.html` files. |
 | `favicon.ico` | Site favicon kept at the root for default browser lookups. |
@@ -40,7 +38,7 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 ### 1. Page Skeleton & `scripts/sync_layout.py`
 Every main page (`*.html` and `blog/*.html`) shares a common structural shell managed by `scripts/sync_layout.py`:
 1. **Container**: `<div class="academic-container">`
-2. **Header**: `<header class="academic-header">` containing `.header-title-row` (`<h1>Feras Aldahlawi</h1>` and `<span class="arabic">فراس الدهلوي</span>`) and `<p class="header-subtitle">Software Engineer</p>`.
+2. **Header**: `<header class="academic-header">` containing `<h1>Feras Aldahlawi</h1>` and `<p class="header-subtitle">Software Engineer</p>`.
 3. **Navigation Bar**: `<nav class="academic-nav">` containing root-relative links to `/index.html`, `/about.html`, `/resume.html`, `/podcast.html`, `/user_manual.html`, and `/blog/index.html`.
    - The link corresponding to the current page (or section, such as `/blog/index.html` for `blog/*.html`) gets `class="active"`.
 4. **Two-Column Layout**: `<div class="academic-layout">`
@@ -51,15 +49,12 @@ Every main page (`*.html` and `blog/*.html`) shares a common structural shell ma
 ### 2. Styling & Reusable CSS Classes (`assets/style.css`)
 - **Primary Accent**: Maroon (`#800000`), hover states (`#d11a2a` for links, `#5a0000` for nav tabs).
 - **Fonts**:
-  - Default / English: System `ui-monospace` stack (`ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace`).
-  - Arabic Display Header (`.arabic`): `'Aref Ruqaa', serif`.
-  - Arabic Body Copy (`.arabic-modern`): `"Tahoma", "Arial", "Simplified Arabic", sans-serif` with `direction: rtl`.
+  - System `ui-monospace` stack (`ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace`).
 - **Semantic Component Classes** (prefer these over inline `style="..."` attributes):
-  - Bilingual / RTL utilities: `.bilingual-block`, `.arabic-section`, `.arabic-section--relaxed`, `.arabic-accent-heading`.
   - Resume: `.resume-contact-header`, `.resume-section-title`, `.experience-entry`, `.education-entry`, `.entry-header`, `.entry-subtitle`.
   - User Manual: `.manual-section`, `.manual-header`.
   - Podcasts: `.podcast-list`, `.podcast-container`, `.podcast-iframe`.
-  - Blog & Markdown: `.blog-list`, `.blog-list-item`, `.post-meta`, `.post-body` (styles headings, `code`, `pre`, `blockquote`, `table`, `img`, `hr`, and `dir="rtl"`).
+  - Blog & Markdown: `.blog-list`, `.blog-list-item`, `.post-meta`, `.post-body` (styles headings, `code`, `pre`, `blockquote`, `table`, `img`, `hr`).
   - Shared Callouts & Footer Nav: `.doc-callout`, `.doc-callout-label`, `.doc-callout-actions`, `.page-footer-nav`, `.back-link`.
 
 ---
@@ -77,7 +72,6 @@ Every main page (`*.html` and `blog/*.html`) shares a common structural shell ma
    - `category`: Topic label (e.g., `Cryptography & Media`)
    - `author`: Defaults to `frs`
    - `summary`: Short description displayed on `blog/index.html`
-   - `dir`: `ltr` (default, English) or `rtl` (Arabic)
    - `draft`: `true` to hide from build/index, `false` to publish
 3. Build the HTML pages and index locally before committing/pushing:
    ```bash
@@ -91,9 +85,6 @@ Every main page (`*.html` and `blog/*.html`) shares a common structural shell ma
    python3 scripts/sync_layout.py
    ```
    This updates all HTML files in the root and `blog/` directories in-place and sets `class="active"` on the appropriate navigation link.
-
-### Updating Bilingual Content
-When asked to update biographical info, resume bullets, or user manual entries, always check whether the page has a corresponding Arabic section (`dir="rtl"`) and keep both English and Arabic versions synchronized unless instructed otherwise.
 
 ### Local Preview
 To preview or test the site locally:

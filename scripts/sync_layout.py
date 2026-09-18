@@ -23,10 +23,7 @@ NAV_ITEMS = [
 ]
 
 HEADER_HTML = """      <header class="academic-header">
-        <div class="header-title-row">
-          <h1>Feras Aldahlawi</h1>
-          <span class="arabic">فراس الدهلوي</span>
-        </div>
+        <h1>Feras Aldahlawi</h1>
         <p class="header-subtitle">Software Engineer</p>
       </header>"""
 
@@ -53,7 +50,6 @@ def build_sidebar_html(include_status: bool = False) -> str:
           <div class="sidebar-section">
             <h3>Page Status</h3>
             <p><span class="blink status-badge">[UNDER CONSTRUCTION]</span></p>
-            <p class="arabic-modern" dir="rtl"><span class="blink status-badge">[تحت الإنشاء]</span></p>
           </div>"""
   return f"""        <aside class="academic-sidebar">
           <div class="sidebar-section">

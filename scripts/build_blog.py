@@ -231,7 +231,6 @@ def render_post_page(post: BlogPost) -> str:
   nav_html = build_nav_html("/blog/index.html")
   sidebar_html = build_sidebar_html(include_status=False)
   dir_attr = ' dir="rtl"' if post.direction == "rtl" else ""
-  arabic_cls = " arabic-modern" if post.direction == "rtl" else ""
 
   indented_body = "\n".join(
       f"              {line}" if line.strip() else ""
@@ -244,7 +243,7 @@ def render_post_page(post: BlogPost) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{html.escape(post.summary, quote=True)}" />
-    <title>{html.escape(post.title)} - Notes | المدونة</title>
+    <title>{html.escape(post.title)} - Notes</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
   </head>
@@ -264,7 +263,7 @@ def render_post_page(post: BlogPost) -> str:
             </div>
             <h2>{html.escape(post.title)}</h2>
             
-            <div class="post-body{arabic_cls}"{dir_attr}>
+            <div class="post-body"{dir_attr}>
 {indented_body}
             </div>
           </article>
@@ -290,15 +289,14 @@ def render_blog_index(posts: list[BlogPost]) -> str:
   items_html: list[str] = []
   for post in posts:
     dir_attr = ' dir="rtl"' if post.direction == "rtl" else ""
-    arabic_cls = ' class="arabic-modern"' if post.direction == "rtl" else ""
     items_html.append(f"""            <li class="blog-list-item"{dir_attr}>
               <div class="post-meta">
                 {post.formatted_date} &mdash; Written by {html.escape(post.author)} &bull; {html.escape(post.category)}
               </div>
-              <h3{arabic_cls}>
+              <h3>
                 <a href="/blog/{post.slug}.html">{html.escape(post.title)}</a>
               </h3>
-              <p{arabic_cls}>
+              <p>
                 {html.escape(post.summary)}
               </p>
             </li>""")
@@ -311,7 +309,7 @@ def render_blog_index(posts: list[BlogPost]) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Blog posts by Feras Aldahlawi (frs)." />
-    <title>Feras's Blog - Notes | المدونة</title>
+    <title>Feras's Blog - Notes</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
   </head>
@@ -363,7 +361,6 @@ date: {today_str}
 category: Engineering
 author: frs
 summary: "Brief 1-2 sentence summary shown on the blog index page."
-dir: ltr
 draft: false
 ---
 
