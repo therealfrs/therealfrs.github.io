@@ -4,8 +4,10 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 
 ## Project Overview
 
-- **Architecture**: Pure static HTML5 and CSS3. There is **no build step**, bundler, package manager (`package.json`), or static site generator (Jekyll/Hugo). Files are served directly as committed.
-- **Bilingual Support**: Most primary pages feature bilingual content in **English** (LTR) and **Arabic** (RTL, `dir="rtl"`).
+- **Architecture**: Pure static HTML5 and CSS3. Every `.html` file is standalone so it can be served directly by GitHub Pages or `python3 -m http.server` with zero runtime dependencies.
+- **Root-Relative Links**: All pages (`/*.html` and `/blog/*.html`) use root-relative paths (`/assets/style.css`, `/favicon.ico`, `/index.html`, `/about.html`, `/blog/index.html`) so boilerplate blocks remain identical at any directory depth.
+- **Shared Layout Sync**: `scripts/sync_layout.py` is the single source of truth for the shared `<header>`, `<nav>`, `<aside>`, and `<footer>` blocks across all HTML pages.
+- **Bilingual Support**: Primary pages feature bilingual content in **English** (LTR) and **Arabic** (RTL, `dir="rtl"`).
 - **VCS**: Managed with Jujutsu (`jj`) / Git.
 
 ---
@@ -20,10 +22,11 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 | `podcast.html` | Embedded RedCircle audio players for podcast appearances. |
 | `user_manual.html` | "Working with Feras" personal user manual in English and Arabic, plus links to the live document. |
 | `blog/index.html` | Technical blog index listing published articles. |
-| `blog/blog_post_*.html` | Individual blog post pages (use `../` relative paths for root stylesheet and navigation). |
-| `style.css` | Global stylesheet defining the academic monospace theme, layout grid, bilingual typography, and mobile responsiveness. |
-| `fonts/` | Self-hosted `.woff2` fonts (`aref-ruqaa.woff2` for traditional Arabic headers, `vt323.woff2`) and licenses. |
-| `images/` & `favicon.ico` | Static icons and SVG graphics. |
+| `blog/blog_post_*.html` | Individual blog post pages. |
+| `assets/style.css` | Global stylesheet defining the academic monospace theme, layout grid, bilingual typography, page components, and mobile responsiveness. |
+| `assets/fonts/` | Self-hosted `.woff2` font (`aref-ruqaa.woff2` for traditional Arabic headers) and license. |
+| `scripts/sync_layout.py` | Zero-dependency Python script that synchronizes the shared header, navigation bar, sidebar, and footer across all `.html` files. |
+| `favicon.ico` | Site favicon kept at the root for default browser lookups. |
 | `engineering_blogs.opml` | OPML subscription list of engineering blogs. |
 | `dahlawis_family_tree/` | **Auto-generated** static genealogy site exported from **Gramps 5.1.6**. **Do not manually edit or format files in this directory** unless explicitly asked. |
 
@@ -31,55 +34,54 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 
 ## Design & Layout Conventions
 
-### 1. Page Skeleton
-Because there is no templating engine, every main page (`*.html` and `blog/*.html`) duplicates a shared structural shell:
+### 1. Page Skeleton & `scripts/sync_layout.py`
+Every main page (`*.html` and `blog/*.html`) shares a common structural shell managed by `scripts/sync_layout.py`:
 1. **Container**: `<div class="academic-container">`
 2. **Header**: `<header class="academic-header">` containing `.header-title-row` (`<h1>Feras Aldahlawi</h1>` and `<span class="arabic">فراس الدهلوي</span>`) and `<p class="header-subtitle">Software Engineer</p>`.
-3. **Navigation Bar**: `<nav class="academic-nav">` containing links to `Home`, `About`, `Resume`, `Podcasts`, `User Manual`, and `Blog`.
-   - The link corresponding to the current page (or section, such as `Blog` for `blog/*.html`) must have `class="active"`.
-   - Pages inside `blog/` must prefix root-level links and `style.css` with `../`.
+3. **Navigation Bar**: `<nav class="academic-nav">` containing root-relative links to `/index.html`, `/about.html`, `/resume.html`, `/podcast.html`, `/user_manual.html`, and `/blog/index.html`.
+   - The link corresponding to the current page (or section, such as `/blog/index.html` for `blog/*.html`) gets `class="active"`.
 4. **Two-Column Layout**: `<div class="academic-layout">`
-   - `<aside class="academic-sidebar">`: Contact email (`frs@chromium.org`), Google Calendar scheduling button (`.btn-academic`), and optional status blocks.
+   - `<aside class="academic-sidebar">`: Contact email (`frs@chromium.org`), Google Calendar scheduling button (`.btn-academic`), and optional status blocks on `index.html`.
    - `<main class="academic-main">`: The primary content area for the page.
 5. **Footer**: `<footer class="academic-footer">` (`Made in Seattle &copy; 2026`).
 
-### 2. Styling & Color Palette (`style.css`)
+### 2. Styling & Reusable CSS Classes (`assets/style.css`)
 - **Primary Accent**: Maroon (`#800000`), hover states (`#d11a2a` for links, `#5a0000` for nav tabs).
 - **Fonts**:
   - Default / English: System `ui-monospace` stack (`ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace`).
   - Arabic Display Header (`.arabic`): `'Aref Ruqaa', serif`.
   - Arabic Body Copy (`.arabic-modern`): `"Tahoma", "Arial", "Simplified Arabic", sans-serif` with `direction: rtl`.
-- **Responsive Breakpoint**: `@media (max-width: 768px)` stacks `.academic-layout` vertically and adjusts padding.
-
-### 3. Bilingual Content Pattern
-- Page `<title>` and `<h2>` headers typically include both languages separated by `|` or `/` (e.g., `About Feras Aldahlawi (frs) | عن فراس الدهلوي`).
-- Short dual-language sections use `.bilingual-block`, placing the English paragraph first and the Arabic translation below it inside `<div class="arabic-section arabic-modern" dir="rtl">`.
-- Longer pages (`resume.html`, `user_manual.html`) place the complete English version first, followed by a `.arabic-section.arabic-modern[dir="rtl"]` containing the complete Arabic version.
+- **Semantic Component Classes** (prefer these over inline `style="..."` attributes):
+  - Bilingual / RTL utilities: `.bilingual-block`, `.arabic-section`, `.arabic-section--relaxed`, `.arabic-accent-heading`.
+  - Resume: `.resume-contact-header`, `.resume-section-title`, `.experience-entry`, `.education-entry`, `.entry-header`, `.entry-subtitle`.
+  - User Manual: `.manual-section`, `.manual-header`.
+  - Podcasts: `.podcast-list`, `.podcast-container`, `.podcast-iframe`.
+  - Blog: `.blog-list`, `.blog-list-item`, `.post-meta`, `.post-body`.
+  - Shared Callouts & Footer Nav: `.doc-callout`, `.doc-callout-label`, `.doc-callout-actions`, `.page-footer-nav`, `.back-link`.
 
 ---
 
 ## Workflows for Common Edits
 
-### Adding or Renaming Navigation Items
-Because `<nav class="academic-nav">` is static across files, any change to the top navigation bar must be applied to **all** of the following files:
-- `index.html` (also update the "Quick Navigation" `<ul>` in `<main>`)
-- `about.html`
-- `resume.html`
-- `podcast.html`
-- `user_manual.html`
-- `blog/index.html`
-- `blog/blog_post_1.html` (and any newer posts in `blog/`)
+### Updating the Header, Navigation Bar, Sidebar, or Footer
+1. Edit `NAV_ITEMS`, `HEADER_HTML`, `build_sidebar_html()`, or `FOOTER_HTML` inside `scripts/sync_layout.py`.
+2. Run:
+   ```bash
+   python3 scripts/sync_layout.py
+   ```
+   This updates all HTML files in the root and `blog/` directories in-place and sets `class="active"` on the appropriate navigation link.
+3. If adding a new top-level section, also add it to the "Quick Navigation" `<ul>` in `index.html`.
 
 ### Adding a New Blog Post
 1. Duplicate `blog/blog_post_1.html` to `blog/<new_post_name>.html`.
-2. Verify `<link rel="stylesheet" href="../style.css">` and `../` navigation links are intact, and `Blog` has `class="active"`.
-3. Add a new `<li>` entry at the top of the article list in `blog/index.html` with the date, author (`frs`), link, and summary.
+2. Add a new `<li class="blog-list-item">` entry at the top of `<ul class="blog-list">` in `blog/index.html` with `.post-meta`, link, and summary.
+3. Run `python3 scripts/sync_layout.py --check` to confirm layout consistency.
 
 ### Updating Bilingual Content
 When asked to update biographical info, resume bullets, or user manual entries, always check whether the page has a corresponding Arabic section (`dir="rtl"`) and keep both English and Arabic versions synchronized unless instructed otherwise.
 
 ### Local Preview
-To preview or test the site locally without external dependencies:
+To preview or test the site locally:
 ```bash
 python3 -m http.server 8000
 ```

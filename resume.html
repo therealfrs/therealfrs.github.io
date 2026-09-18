@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Resume of Feras Aldahlawi (frs), a software engineer." />
     <title>Feras's Resume | السيرة الذاتية</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
   </head>
   <body>
     <div class="academic-container">
@@ -18,21 +19,20 @@
       </header>
       
       <nav class="academic-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="resume.html" class="active">Resume</a>
-        <a href="podcast.html">Podcasts</a>
-        <a href="user_manual.html">User Manual</a>
-        <a href="blog/index.html">Blog</a>
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/resume.html" class="active">Resume</a>
+        <a href="/podcast.html">Podcasts</a>
+        <a href="/user_manual.html">User Manual</a>
+        <a href="/blog/index.html">Blog</a>
       </nav>
 
       <div class="academic-layout">
         <aside class="academic-sidebar">
-
           <div class="sidebar-section">
             <h3>Contact</h3>
             <p>Email: <a href="mailto:frs@chromium.org">frs@chromium.org</a></p>
-            <div style="margin-top: 15px;">
+            <div class="sidebar-cta">
               <a href="https://calendar.app.google/Po5uBfEutynhExWj8" target="_blank" class="btn-academic">Schedule Meeting</a>
             </div>
           </div>
@@ -41,16 +41,16 @@
         <main class="academic-main">
           <h2>Curriculum Vitae / Resume</h2>
 
-          <div style="margin-bottom: 30px; text-align: center; border-bottom: 1px solid #e9e9e9; padding-bottom: 20px;">
-            <h3 style="margin: 0; font-size: 22px; color: #333;">Feras Aldahlawi</h3>
-            <p style="margin: 5px 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color: #666;">
+          <div class="resume-contact-header">
+            <h3>Feras Aldahlawi</h3>
+            <p>
               Seattle, WA | +1-206-412-3931 | <a href="mailto:frs@chromium.org">frs@chromium.org</a>
             </p>
           </div>
 
           <!-- English Section -->
           <div class="resume-section">
-            <h3 style="border-bottom: 1px solid #800000; padding-bottom: 4px; margin-top: 30px;">Professional Experience</h3>
+            <h3 class="resume-section-title">Professional Experience</h3>
 
             <div class="experience-entry">
               <div class="entry-header">
@@ -105,7 +105,7 @@
               </ul>
             </div>
 
-            <h3 style="border-bottom: 1px solid #800000; padding-bottom: 4px; margin-top: 35px;">Education</h3>
+            <h3 class="resume-section-title">Education</h3>
             
             <div class="education-entry">
               <div class="entry-header">
@@ -126,7 +126,7 @@
 
           <!-- Arabic Section -->
           <div class="resume-section arabic-section arabic-modern" dir="rtl">
-            <h3 style="border-bottom: 1px solid #800000; padding-bottom: 4px; margin-top: 30px;">الخبرة العملية</h3>
+            <h3 class="resume-section-title">الخبرة العملية</h3>
 
             <div class="experience-entry">
               <div class="entry-header">
@@ -136,7 +136,7 @@
               <div class="entry-subtitle">
                 مهندس برمجيات - الفريق الأساسي، كروم، ووايدفاين (2019 – الحاضر)
               </div>
-              <ul style="padding-right: 20px; padding-left: 0;">
+              <ul>
                 <li>قدت التصميم التقني والتنفيذ لميزات رئيسية في Widevine L3 CDM لمتصفح كروم على سطح المكتب، مع تحسين مسار ملحقات الوسائط المشفرة (EME) لضمان تشغيل سلس وبدقة عالية عبر تكوينات الأجهزة المتنوعة.</li>
                 <li>أضفت مقاييس ونظام تنبيهات رئيسي لضمان موثوقية تشغيل الوسائط في متصفح كروم.</li>
                 <li>قدت تصميم وتنفيذ خدمة جديدة للفرق الداخلية لتكوين مكتبة التشفير (whitebox cryptography) لمختلف المنصات.</li>
@@ -156,7 +156,7 @@
               <div class="entry-subtitle">
                 مهندس برمجيات - ون درايف وشيربوينت (2017 - 2019)
               </div>
-              <ul style="padding-right: 20px; padding-left: 0;">
+              <ul>
                 <li>حسنت موثوقية المشاركة في OneDrive for Business و SharePoint من 99.97% إلى 99.99%.</li>
                 <li>حسنت تجربة اختيار الأشخاص في OneDrive مع نتائج بحث أكثر صلة.</li>
                 <li>قدت تصميم وتنفيذ ميزة التنبيه عند الرفع إلى مكتبة مستندات مشتركة في OneDrive.</li>
@@ -172,7 +172,7 @@
               <div class="entry-subtitle">
                 مهندس برمجيات (2015 – 2017)
               </div>
-              <ul style="padding-right: 20px; padding-left: 0;">
+              <ul>
                 <li>طورت نظاماً لاكتشاف العلامات التجارية وتصنيفها.</li>
                 <li>هندست نموذج تنبؤ بإيرادات شباك التذاكر بناءً على بيانات وسائل التواصل الاجتماعي بدقة تصل إلى ≈ 60%.</li>
                 <li>طورت وحسنت نظام إدارة المحتوى الحالي مع ضوابط أكثر دقة.</li>
@@ -181,7 +181,7 @@
               </ul>
             </div>
 
-            <h3 style="border-bottom: 1px solid #800000; padding-bottom: 4px; margin-top: 35px;">التعليم</h3>
+            <h3 class="resume-section-title">التعليم</h3>
             
             <div class="education-entry">
               <div class="entry-header">
@@ -201,18 +201,16 @@
           </div>
 
           <!-- Document Link -->
-          <div style="margin-top: 40px; text-align: center; border-top: 1px dashed #ccc; padding-top: 25px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; margin: 0; color: #666;">
-              <i>View the live Google Doc version:</i>
-            </p>
-            <div style="display: flex; gap: 15px; justify-content: center; width: 100%; max-width: 400px;">
+          <div class="doc-callout">
+            <p class="doc-callout-label">View the live Google Doc version:</p>
+            <div class="doc-callout-actions">
               <a href="https://docs.google.com/document/d/1z67560ETnqGzQTGlnxm_jkO44dAGVOS87tii7M1ob0A/edit" target="_blank" class="btn-academic">View Live Document</a>
-              <a href="https://docs.google.com/document/d/1z67560ETnqGzQTGlnxm_jkO44dAGVOS87tii7M1ob0A/edit" target="_blank" class="btn-academic" style="font-family: 'Tahoma'; font-weight: normal;">عرض المستند المباشر</a>
+              <a href="https://docs.google.com/document/d/1z67560ETnqGzQTGlnxm_jkO44dAGVOS87tii7M1ob0A/edit" target="_blank" class="btn-academic btn-academic-arabic">عرض المستند المباشر</a>
             </div>
           </div>
           
-          <div style="margin-top: 35px; border-top: 1px solid #e9e9e9; padding-top: 20px;">
-            <a href="index.html" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">&laquo; Back to Home</a>
+          <div class="page-footer-nav">
+            <a href="/index.html" class="back-link">&laquo; Back to Home</a>
           </div>
         </main>
       </div>

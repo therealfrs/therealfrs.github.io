@@ -6,14 +6,6 @@
   src: url('fonts/aref-ruqaa.woff2') format('woff2');
 }
 
-@font-face {
-  font-family: 'VT323';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/vt323.woff2') format('woff2');
-}
-
 /* Base Styles */
 body {
   background-color: #f7f7f7;
@@ -149,6 +141,10 @@ a:hover {
   margin: 6px 0;
 }
 
+.sidebar-cta {
+  margin-top: 15px;
+}
+
 /* Main Area */
 .academic-main {
   flex: 1;
@@ -198,6 +194,11 @@ a:hover {
   color: #800000 !important;
 }
 
+.btn-academic-arabic {
+  font-family: "Tahoma", "Arial", "Simplified Arabic", sans-serif;
+  font-weight: normal;
+}
+
 /* Footer */
 .academic-footer {
   text-align: center;
@@ -230,6 +231,21 @@ a:hover {
   margin-top: 20px;
 }
 
+.arabic-section--relaxed {
+  line-height: 1.8;
+}
+
+.arabic-section ul {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+.arabic-accent-heading {
+  border-right: 3px solid #800000;
+  padding-right: 8px;
+  margin-right: -11px;
+}
+
 /* Lists and details */
 ul {
   padding-left: 20px;
@@ -240,7 +256,33 @@ li {
   margin-bottom: 8px;
 }
 
-/* For resume entries */
+/* Resume & CV Styles */
+.resume-contact-header {
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 20px;
+}
+
+.resume-contact-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #333333;
+}
+
+.resume-contact-header p {
+  margin: 5px 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #666666;
+}
+
+.resume-section-title {
+  border-bottom: 1px solid #800000;
+  padding-bottom: 4px;
+  margin-top: 30px;
+}
+
 .experience-entry, .education-entry {
   margin-bottom: 25px;
 }
@@ -260,6 +302,164 @@ li {
   font-size: 13px;
   color: #555555;
   margin-bottom: 10px;
+}
+
+/* User Manual Styles */
+.manual-section {
+  margin-bottom: 40px;
+}
+
+.manual-header {
+  text-align: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 15px;
+}
+
+.manual-header h3 {
+  margin: 0;
+  color: #333333;
+  font-size: 20px;
+}
+
+.manual-header p {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #777777;
+  font-style: italic;
+}
+
+/* Podcast Styles */
+.podcast-list {
+  margin-top: 30px;
+}
+
+.podcast-container {
+  margin-bottom: 25px;
+  background: #ffffff;
+  padding: 15px;
+  border: 1px solid #e9e9e9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.podcast-container h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.podcast-iframe {
+  border: none;
+  max-width: 100%;
+  width: 1px;
+  min-width: 100%;
+}
+
+.redcircle-link:link,
+.redcircle-link:active,
+.redcircle-link:visited {
+  color: #800000;
+  text-decoration: none;
+}
+
+.redcircle-link:hover {
+  color: #d11a2a;
+}
+
+/* Blog Styles */
+.blog-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 30px;
+}
+
+.blog-list-item {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 15px;
+}
+
+.blog-list-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.blog-list-item h3 a {
+  text-decoration: none;
+}
+
+.blog-list-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+}
+
+.post-meta {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #777777;
+  margin-bottom: 5px;
+}
+
+.post-body {
+  margin-top: 25px;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Shared Callouts & Page Footer Navigation */
+.doc-callout {
+  margin-top: 40px;
+  text-align: center;
+  border-top: 1px dashed #cccccc;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-callout-label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  margin: 0 !important;
+  color: #666666;
+  font-style: italic;
+}
+
+.doc-callout-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.page-footer-nav {
+  margin-top: 35px;
+  border-top: 1px solid #e9e9e9;
+  padding-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.back-link {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.tagline-footer {
+  margin-top: 40px;
+  border-top: 1px solid #e9e9e9;
+  padding-top: 20px;
+  font-style: italic;
+  color: #555555;
+}
+
+.status-badge {
+  color: #800000;
+  font-weight: bold;
 }
 
 .blink {
