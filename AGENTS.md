@@ -24,7 +24,7 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 | `blog/posts/*.md` | **Markdown source files** for blog posts (with YAML frontmatter). Edit or create posts here. |
 | `blog/index.html` | Auto-generated technical blog index listing published articles. |
 | `blog/<slug>.html` | Auto-generated standalone blog post pages built from `blog/posts/<slug>.md`. |
-| `assets/style.css` | Global stylesheet defining the academic monospace theme, layout grid, typography, Markdown `.post-body` styles, and mobile responsiveness. |
+| `assets/style.css` | Global stylesheet defining the 90s / Japanese Yahoo & MSN web portal theme, layout grid, typography, Markdown `.post-body` styles, and mobile responsiveness. |
 | `scripts/build_blog.py` | Compiles `blog/posts/*.md` into `blog/<slug>.html` and updates `blog/index.html`. Supports `--new <slug> ["Title"]` and `--check`. |
 | `scripts/sync_layout.py` | Synchronizes the shared header, navigation bar, sidebar, and footer across all `.html` files. |
 | `favicon.ico` | Site favicon kept at the root for default browser lookups. |
@@ -38,19 +38,22 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 ### 1. Page Skeleton & `scripts/sync_layout.py`
 Every main page (`*.html` and `blog/*.html`) shares a common structural shell managed by `scripts/sync_layout.py`:
 1. **Container**: `<div class="academic-container">`
-2. **Header**: `<header class="academic-header">` containing `<h1>Feras Aldahlawi</h1>` and `<p class="header-subtitle">Software Engineer</p>`.
-3. **Navigation Bar**: `<nav class="academic-nav">` containing root-relative links to `/index.html`, `/about.html`, `/resume.html`, `/podcast.html`, `/user_manual.html`, and `/blog/index.html`.
+2. **Header**: `<header class="academic-header portal-header">` containing `<h1>FERAS ALDAHLAWI</h1>` (`.portal-title`).
+3. **Navigation Bar**: `<nav class="academic-nav portal-nav">` containing root-relative links to `/index.html`, `/about.html`, `/resume.html`, `/podcast.html`, `/user_manual.html`, and `/blog/index.html` with portal tab icons (`⌂`, `👤`, `📄`, `🎙️`, `📋`, `📝`).
    - The link corresponding to the current page (or section, such as `/blog/index.html` for `blog/*.html`) gets `class="active"`.
 4. **Two-Column Layout**: `<div class="academic-layout">`
-   - `<aside class="academic-sidebar">`: Contact email (`frs@chromium.org`), Google Calendar scheduling button (`.btn-academic`), and optional status blocks on `index.html`.
-   - `<main class="academic-main">`: The primary content area for the page.
-5. **Footer**: `<footer class="academic-footer">` (`Made in Seattle &copy; 2026`).
+   - `<aside class="academic-sidebar portal-sidebar">`: Webmaster profile card, contact email (`frs@chromium.org`), 3D beveled meeting button (`.btn-academic`, `.btn-portal`), and quick navigation links.
+   - `<main class="academic-main portal-main">`: The primary content area for the page.
+5. **Footer**: `<footer class="academic-footer portal-footer">` with portal navigation links and copyright.
 
 ### 2. Styling & Reusable CSS Classes (`assets/style.css`)
-- **Primary Accent**: Maroon (`#800000`), hover states (`#d11a2a` for links, `#5a0000` for nav tabs).
+- **Primary Accent**: Maroon (`#800000`), hover states (`#d11a2a` for links, `#a31424` for nav tabs), desktop warm gray background (`#ebe8e1`).
 - **Fonts**:
-  - System `ui-monospace` stack (`ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace`).
-- **Semantic Component Classes** (prefer these over inline `style="..."` attributes):
+  - Classic Web / Japanese Portal: `"MS PGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", Tahoma, "Segoe UI", Arial, sans-serif`.
+  - Monospace (Code): `ui-monospace, "Courier New", Consolas, monospace`.
+- **Semantic Component Classes**:
+  - Portal & Index: `.portal-lead-box`, `.lead-box-header`, `.lead-box-body`, `.portal-lead-quote`, `.portal-section-title`, `.portal-channel-grid`, `.channel-card`, `.channel-card-header`, `.channel-card-body`, `.channel-card--wide`.
+  - 3D Beveled Buttons: `.btn-academic`, `.btn-portal`.
   - Resume: `.resume-contact-header`, `.resume-section-title`, `.experience-entry`, `.education-entry`, `.entry-header`, `.entry-subtitle`.
   - User Manual: `.manual-section`, `.manual-header`.
   - Podcasts: `.podcast-list`, `.podcast-container`, `.podcast-iframe`.

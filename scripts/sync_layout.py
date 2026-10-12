@@ -22,13 +22,36 @@ NAV_ITEMS = [
     ("/blog/index.html", "Blog"),
 ]
 
-HEADER_HTML = """      <header class="academic-header">
-        <h1>Feras Aldahlawi</h1>
-        <p class="header-subtitle">Software Engineer</p>
+NAV_ICONS = {
+    "/index.html": "⌂",
+    "/about.html": "👤",
+    "/resume.html": "📄",
+    "/podcast.html": "🎙️",
+    "/user_manual.html": "📋",
+    "/blog/index.html": "📝",
+}
+
+HEADER_HTML = """      <header class="academic-header portal-header">
+        <div class="header-main">
+          <div class="header-branding">
+            <h1 class="portal-title">FERAS ALDAHLAWI</h1>
+          </div>
+        </div>
       </header>"""
 
-FOOTER_HTML = """      <footer class="academic-footer">
-        <p>Made in Seattle &copy; 2026</p>
+FOOTER_HTML = """      <footer class="academic-footer portal-footer">
+        <div class="footer-nav-row">
+          <a href="/index.html">Home</a> &bull;
+          <a href="/about.html">About</a> &bull;
+          <a href="/resume.html">Resume</a> &bull;
+          <a href="/podcast.html">Podcasts</a> &bull;
+          <a href="/user_manual.html">User Manual</a> &bull;
+          <a href="/blog/index.html">Blog</a> &bull;
+          <a href="#top">Top of Page &uarr;</a>
+        </div>
+        <p class="footer-copy">
+          Copyright &copy; 2026 Feras Aldahlawi &bull; Made in Seattle
+        </p>
       </footer>"""
 
 
@@ -36,29 +59,49 @@ def build_nav_html(active_href: str) -> str:
   links = []
   for href, label in NAV_ITEMS:
     cls = ' class="active"' if href == active_href else ""
-    links.append(f'        <a href="{href}"{cls}>{label}</a>')
+    icon = NAV_ICONS.get(href, "▸")
+    links.append(f'        <a href="{href}"{cls}>{icon} {label}</a>')
   return (
-      '      <nav class="academic-nav">\n' + "\n".join(links) + "\n      </nav>"
+      '      <nav class="academic-nav portal-nav">\n'
+      + "\n".join(links)
+      + "\n      </nav>"
   )
 
 
 def build_sidebar_html(include_status: bool = False) -> str:
-  status_block = ""
-  if include_status:
-    status_block = """
-
-          <div class="sidebar-section">
-            <h3>Page Status</h3>
-            <p><span class="blink status-badge">[UNDER CONSTRUCTION]</span></p>
-          </div>"""
-  return f"""        <aside class="academic-sidebar">
-          <div class="sidebar-section">
-            <h3>Contact</h3>
-            <p>Email: <a href="mailto:frs@chromium.org">frs@chromium.org</a></p>
-            <div class="sidebar-cta">
-              <a href="https://calendar.app.google/Po5uBfEutynhExWj8" target="_blank" class="btn-academic">Schedule Meeting</a>
+  return """        <aside class="academic-sidebar portal-sidebar">
+          <div class="sidebar-box">
+            <div class="sidebar-box-header">■ WEBMASTER</div>
+            <div class="sidebar-box-body">
+              <div class="webmaster-card">
+                <div class="webmaster-avatar">frs</div>
+                <div class="webmaster-details">
+                  <div class="wm-row"><span class="wm-key">Handle:</span> <span class="wm-val">frs</span></div>
+                  <div class="wm-row"><span class="wm-key">Role:</span> <span class="wm-val">Software Eng</span></div>
+                  <div class="wm-row"><span class="wm-key">Org:</span> <span class="wm-val">Google Chrome</span></div>
+                  <div class="wm-row"><span class="wm-key">Email:</span> <a href="mailto:frs@chromium.org" class="wm-link">frs@chromium.org</a></div>
+                </div>
+              </div>
+              <div class="sidebar-cta">
+                <a href="https://calendar.app.google/Po5uBfEutynhExWj8" target="_blank" class="btn-academic btn-portal">Schedule Meeting</a>
+              </div>
             </div>
-          </div>{status_block}
+          </div>
+
+          <div class="sidebar-box">
+            <div class="sidebar-box-header">■ QUICK LINKS</div>
+            <div class="sidebar-box-body">
+              <ul class="channel-list">
+                <li><a href="/index.html">&raquo; Portal Home</a></li>
+                <li><a href="/about.html">&raquo; Bio &amp; Career</a></li>
+                <li><a href="/resume.html">&raquo; Curriculum Vitae</a></li>
+                <li><a href="/podcast.html">&raquo; Podcast Audio</a></li>
+                <li><a href="/user_manual.html">&raquo; Collaboration Manual</a></li>
+                <li><a href="/blog/index.html">&raquo; Tech Blog &amp; Notes</a></li>
+                <li><a href="/engineering_blogs.opml" download>&raquo; OPML RSS Feeds</a></li>
+              </ul>
+            </div>
+          </div>
         </aside>"""
 
 
@@ -77,25 +120,25 @@ def sync_file(file_path: Path, check_only: bool = False) -> bool:
   is_home = rel_path == Path("index.html")
 
   updated = re.sub(
-      r"[ \t]*<header class=\"academic-header\">.*?</header>",
+      r"[ \t]*<header class=\"academic-header.*?\">.*?</header>",
       HEADER_HTML,
       updated,
       flags=re.DOTALL,
   )
   updated = re.sub(
-      r"[ \t]*<nav class=\"academic-nav\">.*?</nav>",
+      r"[ \t]*<nav class=\"academic-nav.*?\">.*?</nav>",
       build_nav_html(active_href),
       updated,
       flags=re.DOTALL,
   )
   updated = re.sub(
-      r"[ \t]*<aside class=\"academic-sidebar\">.*?</aside>",
+      r"[ \t]*<aside class=\"academic-sidebar.*?\">.*?</aside>",
       build_sidebar_html(include_status=is_home),
       updated,
       flags=re.DOTALL,
   )
   updated = re.sub(
-      r"[ \t]*<footer class=\"academic-footer\">.*?</footer>",
+      r"[ \t]*<footer class=\"academic-footer.*?\">.*?</footer>",
       FOOTER_HTML,
       updated,
       flags=re.DOTALL,
