@@ -48,6 +48,10 @@ Every main page (`*.html` and `blog/*.html`) shares a common structural shell ma
 
 ### 2. Styling & Reusable CSS Classes (`assets/style.css`)
 - **Primary Accent**: Maroon (`#800000`), hover states (`#d11a2a` for links, `#a31424` for nav tabs), desktop warm gray background (`#ebe8e1`).
+- **Performance & Navigation**:
+  - CSS preloading (`<link rel="preload" href="/assets/style.css" as="style">`) in `<head>` for zero parser blocking.
+  - W3C Speculation Rules API (`<script type="speculationrules">`) pre-rendering all primary internal links on hover for instant 0ms snap navigation.
+  - Native `loading="lazy"` on all embedded podcast iframes.
 - **Fonts**:
   - Classic Web / Japanese Portal: `"MS PGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", Tahoma, "Segoe UI", Arial, sans-serif`.
   - Monospace (Code): `ui-monospace, "Courier New", Consolas, monospace`.

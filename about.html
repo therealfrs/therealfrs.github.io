@@ -6,8 +6,25 @@
     <meta name="description" content="About Feras Aldahlawi (frs), a software engineer." />
     <meta name="keywords" content="Feras Aldahlawi, frs, software engineer, about" />
     <title>About Feras Aldahlawi (frs)</title>
+    <link rel="preload" href="/assets/style.css" as="style">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": "/*.opml" } },
+              { "not": { "href_matches": "/dahlawis_family_tree/*" } }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div class="academic-container">

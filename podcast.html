@@ -5,8 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Podcasts by Feras Aldahlawi (frs)." />
     <title>Feras's Podcasts</title>
+    <link rel="preload" href="/assets/style.css" as="style">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": "/*.opml" } },
+              { "not": { "href_matches": "/dahlawis_family_tree/*" } }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div class="academic-container">
@@ -73,32 +90,32 @@
           <div class="podcast-list">
             <div class="podcast-container">
               <h3>عن الذكاء الاصطناعي ونهاية المبرمجين</h3>
-              <iframe class="podcast-iframe" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9aea422f-d64f-4a8f-a58b-a7dedb52fd65"></iframe>
+              <iframe class="podcast-iframe" height="150" scrolling="no" loading="lazy" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9aea422f-d64f-4a8f-a58b-a7dedb52fd65"></iframe>
             </div>
 
             <div class="podcast-container">
               <h3>تخرجت وما تعرف "قت"؟</h3>
-              <iframe class="podcast-iframe" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/b23fe0e1-4b42-4191-81a6-2b307be43b53"></iframe>
+              <iframe class="podcast-iframe" height="150" scrolling="no" loading="lazy" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/b23fe0e1-4b42-4191-81a6-2b307be43b53"></iframe>
             </div>
 
             <div class="podcast-container">
               <h3>مع علي بوصالح</h3>
-              <iframe class="podcast-iframe" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9382b9b1-c10a-4614-b90d-77a0123b41eb"></iframe>
+              <iframe class="podcast-iframe" height="150" scrolling="no" loading="lazy" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/9382b9b1-c10a-4614-b90d-77a0123b41eb"></iframe>
             </div>
 
             <div class="podcast-container">
               <h3>Google I/O and OpenAI events</h3>
-              <iframe class="podcast-iframe" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/ea147a02-709f-43bb-b6ca-2b328ea12e64"></iframe>
+              <iframe class="podcast-iframe" height="150" scrolling="no" loading="lazy" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/ea147a02-709f-43bb-b6ca-2b328ea12e64"></iframe>
             </div>
 
             <div class="podcast-container">
               <h3>اجهزة الذكاء الاصطناعي الغبية ونتفلكس سنافر</h3>
-              <iframe class="podcast-iframe" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/40241f9b-9ff6-46dd-abaf-dd2993723c89"></iframe>
+              <iframe class="podcast-iframe" height="150" scrolling="no" loading="lazy" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/40241f9b-9ff6-46dd-abaf-dd2993723c89"></iframe>
             </div>
 
             <div class="podcast-container">
               <h3>الموسم الثالث؟</h3>
-              <iframe class="podcast-iframe" height="150" scrolling="no" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/fb917d74-30b5-4f44-96cf-1decf0e81f8f"></iframe>
+              <iframe class="podcast-iframe" height="150" scrolling="no" loading="lazy" src="https://redcircle.com/embedded-player/sh/09937afa-9f23-4b4b-bf60-0ad544fea4da/ep/fb917d74-30b5-4f44-96cf-1decf0e81f8f"></iframe>
             </div>
           </div>
           

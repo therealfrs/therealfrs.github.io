@@ -19,7 +19,7 @@ from pathlib import Path
 import re
 import sys
 
-from sync_layout import FOOTER_HTML, HEADER_HTML, build_nav_html, build_sidebar_html
+from sync_layout import FOOTER_HTML, HEAD_ASSETS_HTML, HEADER_HTML, build_nav_html, build_sidebar_html
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT / "blog" / "posts"
@@ -244,8 +244,7 @@ def render_post_page(post: BlogPost) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{html.escape(post.summary, quote=True)}" />
     <title>{html.escape(post.title)} - Notes</title>
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
+{HEAD_ASSETS_HTML}
   </head>
   <body>
     <div class="academic-container">
@@ -310,8 +309,7 @@ def render_blog_index(posts: list[BlogPost]) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Blog posts by Feras Aldahlawi (frs)." />
     <title>Feras's Blog - Notes</title>
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
+{HEAD_ASSETS_HTML}
   </head>
   <body>
     <div class="academic-container">

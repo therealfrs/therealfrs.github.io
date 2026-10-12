@@ -31,6 +31,26 @@ NAV_ICONS = {
     "/blog/index.html": "📝",
 }
 
+HEAD_ASSETS_HTML = """    <link rel="preload" href="/assets/style.css" as="style">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": "/*.opml" } },
+              { "not": { "href_matches": "/dahlawis_family_tree/*" } }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>"""
+
 HEADER_HTML = """      <header class="academic-header portal-header">
         <div class="header-main">
           <div class="header-branding">
@@ -119,6 +139,12 @@ def sync_file(file_path: Path, check_only: bool = False) -> bool:
   active_href = active_href_for_page(rel_path)
   is_home = rel_path == Path("index.html")
 
+  updated = re.sub(
+      r"[ \t]*(?:<link rel=\"preload\" href=\"/assets/style\.css\" as=\"style\">\s*)?<link rel=\"stylesheet\" href=\"/assets/style\.css\">\s*<link rel=\"icon\" href=\"/favicon\.ico\" sizes=\"32x32\">(?:\s*<script type=\"speculationrules\">.*?</script>)?",
+      HEAD_ASSETS_HTML,
+      updated,
+      flags=re.DOTALL,
+  )
   updated = re.sub(
       r"[ \t]*<header class=\"academic-header.*?\">.*?</header>",
       HEADER_HTML,
