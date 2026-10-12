@@ -25,6 +25,7 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 | `blog/index.html` | Auto-generated technical blog index listing published articles. |
 | `blog/<slug>.html` | Auto-generated standalone blog post pages built from `blog/posts/<slug>.md`. |
 | `assets/style.css` | Global stylesheet defining the 90s / Japanese Yahoo & MSN web portal theme, layout grid, typography, Markdown `.post-body` styles, and mobile responsiveness. |
+| `assets/feras.webp` / `.png` | Optimized portrait photo of Feras Aldahlawi displayed on `/about.html`. |
 | `scripts/build_blog.py` | Compiles `blog/posts/*.md` into `blog/<slug>.html` and updates `blog/index.html`. Supports `--new <slug> ["Title"]` and `--check`. |
 | `scripts/sync_layout.py` | Synchronizes the shared header, navigation bar, sidebar, and footer across all `.html` files. |
 | `favicon.ico` | Site favicon kept at the root for default browser lookups. |

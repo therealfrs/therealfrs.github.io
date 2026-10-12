@@ -335,6 +335,38 @@ a:hover {
   margin-top: 12px;
 }
 
+/* --- About Page Bio & Profile Photo --- */
+.bio-container {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.profile-picture {
+  flex-shrink: 0;
+  display: block;
+}
+
+.profile-photo {
+  width: 160px;
+  height: 160px;
+  border: 2px solid #800000;
+  box-shadow: 2px 2px 0px #b8b2a8;
+  background-color: #ffffff;
+  display: block;
+  object-fit: cover;
+}
+
+.bio-text {
+  flex: 1;
+}
+
+.bio-text p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .portal-section-title {
   background-color: #800000;
   color: #ffffff;
@@ -804,5 +836,10 @@ code {
 
   .portal-channel-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bio-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
