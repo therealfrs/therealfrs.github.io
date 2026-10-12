@@ -34,7 +34,6 @@ class BlogPost:
   category: str
   author: str
   summary: str
-  direction: str
   draft: bool
   body_html: str
   source_path: Path
@@ -205,7 +204,6 @@ def load_post(md_path: Path) -> BlogPost:
   category = meta.get("category", "Engineering")
   author = meta.get("author", "frs")
   summary = meta.get("summary", "")
-  direction = meta.get("dir", "ltr").lower()
   draft = meta.get("draft", "false").lower() in ("true", "yes", "1")
 
   body_html = render_markdown(body_md)
@@ -220,7 +218,6 @@ def load_post(md_path: Path) -> BlogPost:
       category=category,
       author=author,
       summary=summary,
-      direction=direction,
       draft=draft,
       body_html=body_html,
       source_path=md_path,
@@ -229,8 +226,7 @@ def load_post(md_path: Path) -> BlogPost:
 
 def render_post_page(post: BlogPost) -> str:
   nav_html = build_nav_html("/blog/index.html")
-  sidebar_html = build_sidebar_html(include_status=False)
-  dir_attr = ' dir="rtl"' if post.direction == "rtl" else ""
+  sidebar_html = build_sidebar_html()
 
   indented_body = "\n".join(
       f"              {line}" if line.strip() else ""
@@ -256,13 +252,13 @@ def render_post_page(post: BlogPost) -> str:
 {sidebar_html}
 
         <main class="academic-main">
-          <article{dir_attr}>
+          <article>
             <div class="post-meta">
               Published: {post.formatted_date} &bull; Category: {html.escape(post.category)}
             </div>
             <h2>{html.escape(post.title)}</h2>
             
-            <div class="post-body"{dir_attr}>
+            <div class="post-body">
 {indented_body}
             </div>
           </article>
@@ -283,12 +279,11 @@ def render_post_page(post: BlogPost) -> str:
 
 def render_blog_index(posts: list[BlogPost]) -> str:
   nav_html = build_nav_html("/blog/index.html")
-  sidebar_html = build_sidebar_html(include_status=False)
+  sidebar_html = build_sidebar_html()
 
   items_html: list[str] = []
   for post in posts:
-    dir_attr = ' dir="rtl"' if post.direction == "rtl" else ""
-    items_html.append(f"""            <li class="blog-list-item"{dir_attr}>
+    items_html.append(f"""            <li class="blog-list-item">
               <div class="post-meta">
                 {post.formatted_date} &mdash; Written by {html.escape(post.author)} &bull; {html.escape(post.category)}
               </div>

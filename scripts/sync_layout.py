@@ -14,49 +14,23 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 
 NAV_ITEMS = [
-    ("/index.html", "Home"),
-    ("/about.html", "About"),
-    ("/resume.html", "Resume"),
-    ("/podcast.html", "Podcasts"),
-    ("/user_manual.html", "User Manual"),
-    ("/blog/index.html", "Blog"),
+    ("/index.html", "⌂", "Home"),
+    ("/about.html", "👤", "About"),
+    ("/resume.html", "📄", "Resume"),
+    ("/podcast.html", "🎙️", "Podcasts"),
+    ("/user_manual.html", "📋", "User Manual"),
+    ("/blog/index.html", "📝", "Blog"),
 ]
-
-NAV_ICONS = {
-    "/index.html": "⌂",
-    "/about.html": "👤",
-    "/resume.html": "📄",
-    "/podcast.html": "🎙️",
-    "/user_manual.html": "📋",
-    "/blog/index.html": "📝",
-}
 
 HEAD_ASSETS_HTML = """    <link rel="preload" href="/assets/style.css" as="style">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <script type="speculationrules">
-    {
-      "prerender": [
-        {
-          "where": {
-            "and": [
-              { "href_matches": "/*" },
-              { "not": { "href_matches": "/*.opml" } },
-              { "not": { "href_matches": "/dahlawis_family_tree/*" } }
-            ]
-          },
-          "eagerness": "moderate"
-        }
-      ]
-    }
+    {"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.opml"}},{"not":{"href_matches":"/dahlawis_family_tree/*"}}]},"eagerness":"moderate"}]}
     </script>"""
 
 HEADER_HTML = """      <header class="academic-header portal-header">
-        <div class="header-main">
-          <div class="header-branding">
-            <h1 class="portal-title">FERAS ALDAHLAWI</h1>
-          </div>
-        </div>
+        <h1 class="portal-title">FERAS ALDAHLAWI</h1>
       </header>"""
 
 FOOTER_HTML = """      <footer class="academic-footer portal-footer">
@@ -76,11 +50,10 @@ FOOTER_HTML = """      <footer class="academic-footer portal-footer">
 
 
 def build_nav_html(active_href: str) -> str:
-  links = []
-  for href, label in NAV_ITEMS:
-    cls = ' class="active"' if href == active_href else ""
-    icon = NAV_ICONS.get(href, "▸")
-    links.append(f'        <a href="{href}"{cls}>{icon} {label}</a>')
+  links = [
+      f'        <a href="{href}"{" class=\"active\"" if href == active_href else ""}>{icon} {label}</a>'
+      for href, icon, label in NAV_ITEMS
+  ]
   return (
       '      <nav class="academic-nav portal-nav">\n'
       + "\n".join(links)
@@ -88,7 +61,7 @@ def build_nav_html(active_href: str) -> str:
   )
 
 
-def build_sidebar_html(include_status: bool = False) -> str:
+def build_sidebar_html() -> str:
   return """        <aside class="academic-sidebar portal-sidebar">
           <div class="sidebar-box">
             <div class="sidebar-box-header">■ WEBMASTER</div>
@@ -137,7 +110,6 @@ def sync_file(file_path: Path, check_only: bool = False) -> bool:
   updated = original
 
   active_href = active_href_for_page(rel_path)
-  is_home = rel_path == Path("index.html")
 
   updated = re.sub(
       r"[ \t]*(?:<link rel=\"preload\" href=\"/assets/style\.css\" as=\"style\">\s*)?<link rel=\"stylesheet\" href=\"/assets/style\.css\">\s*<link rel=\"icon\" href=\"/favicon\.ico\" sizes=\"32x32\">(?:\s*<script type=\"speculationrules\">.*?</script>)?",
@@ -159,7 +131,7 @@ def sync_file(file_path: Path, check_only: bool = False) -> bool:
   )
   updated = re.sub(
       r"[ \t]*<aside class=\"academic-sidebar.*?\">.*?</aside>",
-      build_sidebar_html(include_status=is_home),
+      build_sidebar_html(),
       updated,
       flags=re.DOTALL,
   )

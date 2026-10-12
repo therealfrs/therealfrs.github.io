@@ -11,20 +11,7 @@
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <script type="speculationrules">
-    {
-      "prerender": [
-        {
-          "where": {
-            "and": [
-              { "href_matches": "/*" },
-              { "not": { "href_matches": "/*.opml" } },
-              { "not": { "href_matches": "/dahlawis_family_tree/*" } }
-            ]
-          },
-          "eagerness": "moderate"
-        }
-      ]
-    }
+    {"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.opml"}},{"not":{"href_matches":"/dahlawis_family_tree/*"}}]},"eagerness":"moderate"}]}
     </script>
     <script type="application/ld+json">
     {
@@ -40,11 +27,7 @@
   <body>
     <div class="academic-container">
       <header class="academic-header portal-header">
-        <div class="header-main">
-          <div class="header-branding">
-            <h1 class="portal-title">FERAS ALDAHLAWI</h1>
-          </div>
-        </div>
+        <h1 class="portal-title">FERAS ALDAHLAWI</h1>
       </header>
       
       <nav class="academic-nav portal-nav">
@@ -206,32 +189,17 @@
       const loadGtag = () => {
         if (gtagLoaded) return;
         gtagLoaded = true;
-
-        const script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HF0QQE6EX6';
-        script.async = true;
-        document.head.appendChild(script);
-
-        script.onload = () => {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-HF0QQE6EX6');
-        };
-
-        window.removeEventListener('scroll', loadGtag);
-        window.removeEventListener('mousemove', loadGtag);
-        window.removeEventListener('touchstart', loadGtag);
-        if (fallbackTimeout) {
-            clearTimeout(fallbackTimeout);
-        }
+        const s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HF0QQE6EX6';
+        s.async = true;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HF0QQE6EX6');
       };
-
-      window.addEventListener('scroll', loadGtag, { once: true });
-      window.addEventListener('mousemove', loadGtag, { once: true });
-      window.addEventListener('touchstart', loadGtag, { once: true });
-
-      const fallbackTimeout = setTimeout(loadGtag, 3000);
+      ['scroll', 'mousemove', 'touchstart'].forEach(e => window.addEventListener(e, loadGtag, { once: true, passive: true }));
+      setTimeout(loadGtag, 3000);
     </script>
   </body>
 </html>
