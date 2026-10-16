@@ -4,10 +4,9 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 
 ## Project Overview
 
-- **Architecture**: Pure static HTML5 and CSS3. Every `.html` file is standalone so it can be served directly by GitHub Pages or `python3 -m http.server` with zero runtime dependencies.
-- **Markdown Blog Workflow**: Blog posts are written in Markdown inside `blog/posts/*.md` and compiled locally into styled HTML pages (`blog/*.html` and `blog/index.html`) via `python3 scripts/build_blog.py`.
-- **Root-Relative Links**: All pages (`/*.html` and `/blog/*.html`) use root-relative paths (`/assets/style.css`, `/favicon.ico`, `/index.html`, `/about.html`, `/blog/index.html`) so boilerplate blocks remain identical at any directory depth.
-- **Shared Layout Sync**: `scripts/sync_layout.py` is the single source of truth for the shared `<header>`, `<nav>`, `<aside>`, and `<footer>` blocks across all HTML pages.
+- **Architecture**: Minimal static HTML5 and CSS3. Single-column hub (`index.html`) plus bare leaf pages (`user_manual.html` and `blog/*.html`) with zero runtime dependencies.
+- **Markdown Blog Workflow**: Blog posts are written in Markdown inside `blog/posts/*.md` and compiled into `blog/<slug>.html` (and synced into the Writing list on `index.html`) via `python3 scripts/build_blog.py`.
+- **Root-Relative Links**: All pages use root-relative paths (`/assets/style.css`, `/favicon.ico`, `/`, `/user_manual.html`, `/blog/<slug>.html`).
 - **VCS**: Managed with Jujutsu (`jj`) / Git.
 
 ---
@@ -16,54 +15,16 @@ This repository contains the source code for **Feras Aldahlawi's (`frs`) persona
 
 | Path | Description |
 | :--- | :--- |
-| `index.html` | Home page with welcome text, quick navigation, JSON-LD `Person` schema, and deferred Google Analytics (`G-HF0QQE6EX6`). |
-| `about.html` | Biographical and career summary. |
-| `resume.html` | Full Curriculum Vitae / Resume, plus link to the live Google Doc. |
-| `podcast.html` | Embedded RedCircle audio players for podcast appearances. |
-| `user_manual.html` | "Working with Feras" personal user manual, plus link to the live document. |
+| `index.html` | Single-column home page with header links (email, schedule, live Google Doc resume, user manual), bio + photo, Writing list, Work (Google Disco & Chromium), Appearances links, JSON-LD `Person` schema, and deferred Google Analytics (`G-HF0QQE6EX6`). |
+| `user_manual.html` | "Working with Feras" collaboration manual (bare single-column leaf page with section anchors + link to live Google Doc). |
 | `blog/posts/*.md` | **Markdown source files** for blog posts (with YAML frontmatter). Edit or create posts here. |
-| `blog/index.html` | Auto-generated technical blog index listing published articles. |
 | `blog/<slug>.html` | Auto-generated standalone blog post pages built from `blog/posts/<slug>.md`. |
-| `assets/style.css` | Global stylesheet defining the 90s / Japanese Yahoo & MSN web portal theme, layout grid, typography, Markdown `.post-body` styles, and mobile responsiveness. |
-| `assets/feras.webp` / `.png` | Optimized portrait photo of Feras Aldahlawi displayed on `/about.html`. |
-| `scripts/build_blog.py` | Compiles `blog/posts/*.md` into `blog/<slug>.html` and updates `blog/index.html`. Supports `--new <slug> ["Title"]` and `--check`. |
-| `scripts/sync_layout.py` | Synchronizes the shared header, navigation bar, sidebar, and footer across all `.html` files. |
+| `assets/style.css` | Global stylesheet: deep maroon (`#800000`) accent, warm gray (`#ebe8e1`) desktop background, classic typography, and `.doc-body` Markdown styles. |
+| `assets/feras.webp` / `.png` | Portrait photo of Feras Aldahlawi displayed on `index.html`. |
+| `scripts/build_blog.py` | Compiles `blog/posts/*.md` into `blog/<slug>.html` and updates the `<!-- BLOG_SECTION_START -->...<!-- BLOG_SECTION_END -->` block in `index.html` (hiding the Writing section when no posts exist). Supports `--new <slug> ["Title"]` and `--check`. |
 | `favicon.ico` | Site favicon kept at the root for default browser lookups. |
 | `engineering_blogs.opml` | OPML subscription list of engineering blogs. |
 | `dahlawis_family_tree/` | **Auto-generated** static genealogy site exported from **Gramps 5.1.6**. **Do not manually edit or format files in this directory** unless explicitly asked. |
-
----
-
-## Design & Layout Conventions
-
-### 1. Page Skeleton & `scripts/sync_layout.py`
-Every main page (`*.html` and `blog/*.html`) shares a common structural shell managed by `scripts/sync_layout.py`:
-1. **Container**: `<div class="academic-container">`
-2. **Header**: `<header class="academic-header portal-header">` containing `<h1>FERAS ALDAHLAWI</h1>` (`.portal-title`).
-3. **Navigation Bar**: `<nav class="academic-nav portal-nav">` containing root-relative links to `/index.html`, `/about.html`, `/resume.html`, `/podcast.html`, `/user_manual.html`, and `/blog/index.html` with portal tab icons (`⌂`, `👤`, `📄`, `🎙️`, `📋`, `📝`).
-   - The link corresponding to the current page (or section, such as `/blog/index.html` for `blog/*.html`) gets `class="active"`.
-4. **Two-Column Layout**: `<div class="academic-layout">`
-   - `<aside class="academic-sidebar portal-sidebar">`: Webmaster profile card, contact email (`frs@chromium.org`), 3D beveled meeting button (`.btn-academic`, `.btn-portal`), and quick navigation links.
-   - `<main class="academic-main portal-main">`: The primary content area for the page.
-5. **Footer**: `<footer class="academic-footer portal-footer">` with portal navigation links and copyright.
-
-### 2. Styling & Reusable CSS Classes (`assets/style.css`)
-- **Primary Accent**: Maroon (`#800000`), hover states (`#d11a2a` for links, `#a31424` for nav tabs), desktop warm gray background (`#ebe8e1`).
-- **Performance & Navigation**:
-  - CSS preloading (`<link rel="preload" href="/assets/style.css" as="style">`) in `<head>` for zero parser blocking.
-  - W3C Speculation Rules API (`<script type="speculationrules">`) pre-rendering all primary internal links on hover for instant 0ms snap navigation.
-  - Native `loading="lazy"` on all embedded podcast iframes.
-- **Fonts**:
-  - Classic Web / Japanese Portal: `"MS PGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", Tahoma, "Segoe UI", Arial, sans-serif`.
-  - Monospace (Code): `ui-monospace, "Courier New", Consolas, monospace`.
-- **Semantic Component Classes**:
-  - Portal & Index: `.portal-lead-box`, `.lead-box-header`, `.lead-box-body`, `.portal-lead-quote`, `.portal-section-title`, `.portal-channel-grid`, `.channel-card`, `.channel-card-header`, `.channel-card-body`, `.channel-card--wide`.
-  - 3D Beveled Buttons: `.btn-academic`, `.btn-portal`.
-  - Resume: `.resume-contact-header`, `.resume-section-title`, `.experience-entry`, `.education-entry`, `.entry-header`, `.entry-subtitle`.
-  - User Manual: `.manual-section`, `.manual-header`.
-  - Podcasts: `.podcast-list`, `.podcast-container`, `.podcast-iframe`.
-  - Blog & Markdown: `.blog-list`, `.blog-list-item`, `.post-meta`, `.post-body` (styles headings, `code`, `pre`, `blockquote`, `table`, `img`, `hr`).
-  - Shared Callouts & Footer Nav: `.doc-callout`, `.doc-callout-label`, `.doc-callout-actions`, `.page-footer-nav`, `.back-link`.
 
 ---
 
@@ -74,28 +35,13 @@ Every main page (`*.html` and `blog/*.html`) shares a common structural shell ma
    ```bash
    python3 scripts/build_blog.py --new <slug> "Your Post Title"
    ```
-2. Edit `blog/posts/<slug>.md`. Frontmatter fields supported:
-   - `title`: Post title
-   - `date`: `YYYY-MM-DD` (controls sorting on `blog/index.html`)
-   - `category`: Topic label (e.g., `Cryptography & Media`)
-   - `author`: Defaults to `frs`
-   - `summary`: Short description displayed on `blog/index.html`
-   - `draft`: `true` to hide from build/index, `false` to publish
-3. Build the HTML pages and index locally before committing/pushing:
+2. Edit `blog/posts/<slug>.md`. Frontmatter fields: `title`, `date` (`YYYY-MM-DD`), `category`, `author`, `summary`, `draft`.
+3. Build the HTML pages and update `index.html`:
    ```bash
    python3 scripts/build_blog.py
    ```
 
-### Updating the Header, Navigation Bar, Sidebar, or Footer
-1. Edit `NAV_ITEMS`, `HEADER_HTML`, `build_sidebar_html()`, or `FOOTER_HTML` inside `scripts/sync_layout.py`.
-2. Run:
-   ```bash
-   python3 scripts/sync_layout.py
-   ```
-   This updates all HTML files in the root and `blog/` directories in-place and sets `class="active"` on the appropriate navigation link.
-
 ### Local Preview
-To preview or test the site locally:
 ```bash
 python3 -m http.server 8000
 ```

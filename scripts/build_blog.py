@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""Builds HTML blog posts and blog/index.html from Markdown files in blog/posts/*.md.
+"""Builds HTML blog posts from blog/posts/*.md and updates the Writing list in index.html.
 
 Usage:
-  python3 scripts/build_blog.py                             # Build all posts &
-  blog/index.html
-  python3 scripts/build_blog.py --new <slug> ["Post Title"] # Create a new .md
-  post template
-  python3 scripts/build_blog.py --check                     # Check if generated
-  HTML is up-to-date
+  python3 scripts/build_blog.py                             # Build all posts & update index.html
+  python3 scripts/build_blog.py --new <slug> ["Post Title"] # Create a new .md post template
+  python3 scripts/build_blog.py --check                     # Check if generated HTML is up-to-date
 """
 
 from __future__ import annotations
@@ -19,11 +16,10 @@ from pathlib import Path
 import re
 import sys
 
-from sync_layout import FOOTER_HTML, HEAD_ASSETS_HTML, HEADER_HTML, build_nav_html, build_sidebar_html
-
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT / "blog" / "posts"
 BLOG_DIR = ROOT / "blog"
+INDEX_PATH = ROOT / "index.html"
 
 
 @dataclass
@@ -37,6 +33,10 @@ class BlogPost:
   draft: bool
   body_html: str
   source_path: Path
+
+  @property
+  def iso_date(self) -> str:
+    return self.pub_date.isoformat()
 
   @property
   def formatted_date(self) -> str:
@@ -143,7 +143,6 @@ def _fallback_markdown_to_html(md_text: str) -> str:
       flush_para()
       close_list()
       level = len(heading_match.group(1))
-      # Shift h1 inside post body to h2 so page title remains h2
       tag_level = min(level + 1 if level == 1 else level, 4)
       out.append(
           f"<h{tag_level}>{_inline_format(heading_match.group(2))}</h{tag_level}>"
@@ -225,11 +224,8 @@ def load_post(md_path: Path) -> BlogPost:
 
 
 def render_post_page(post: BlogPost) -> str:
-  nav_html = build_nav_html("/blog/index.html")
-  sidebar_html = build_sidebar_html()
-
   indented_body = "\n".join(
-      f"              {line}" if line.strip() else ""
+      f"          {line}" if line.strip() else ""
       for line in post.body_html.splitlines()
   )
 
@@ -239,103 +235,67 @@ def render_post_page(post: BlogPost) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{html.escape(post.summary, quote=True)}" />
-    <title>{html.escape(post.title)} - Notes</title>
-{HEAD_ASSETS_HTML}
+    <title>{html.escape(post.title)} - Feras Aldahlawi (frs)</title>
+    <link rel="preload" href="/assets/style.css" as="style">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
   </head>
   <body>
-    <div class="academic-container">
-{HEADER_HTML}
-      
-{nav_html}
+    <div class="page">
+      <nav class="breadcrumb">
+        <a href="/">&larr; Feras Aldahlawi</a>
+      </nav>
 
-      <div class="academic-layout">
-{sidebar_html}
-
-        <main class="academic-main">
-          <article>
-            <div class="post-meta">
-              Published: {post.formatted_date} &bull; Category: {html.escape(post.category)}
-            </div>
-            <h2>{html.escape(post.title)}</h2>
-            
-            <div class="post-body">
+      <main>
+        <article class="doc-body">
+          <h1 class="doc-title">{html.escape(post.title)}</h1>
+          <div class="post-meta">
+            {post.formatted_date} &middot; {html.escape(post.category)}
+          </div>
 {indented_body}
-            </div>
-          </article>
-          
-          <div class="page-footer-nav">
-            <a href="/blog/index.html" class="back-link">&laquo; Back to Blog Index</a>
-            <a href="/index.html" class="back-link">&laquo; Home</a>
-          </div>
-        </main>
-      </div>
+        </article>
+      </main>
 
-{FOOTER_HTML}
+      <footer class="site-footer">
+        <a href="/">&larr; Back to Home</a>
+      </footer>
     </div>
   </body>
 </html>
 """
 
 
-def render_blog_index(posts: list[BlogPost]) -> str:
-  nav_html = build_nav_html("/blog/index.html")
-  sidebar_html = build_sidebar_html()
+def update_index_writing_list(posts: list[BlogPost]) -> str:
+  index_html = INDEX_PATH.read_text(encoding="utf-8")
+  if posts:
+    items = "\n".join(
+        f'            <li><span class="entry-date">{post.iso_date}</span><a href="/blog/{post.slug}.html">{html.escape(post.title)}</a></li>'
+        for post in posts
+    )
+    replacement = (
+        "<!-- BLOG_SECTION_START -->\n"
+        '        <section class="section">\n'
+        "          <h2>Writing</h2>\n"
+        '          <ul class="entry-list">\n'
+        f"{items}\n"
+        "          </ul>\n"
+        "        </section>\n"
+        "        <!-- BLOG_SECTION_END -->"
+    )
+  else:
+    replacement = "<!-- BLOG_SECTION_START --><!-- BLOG_SECTION_END -->"
 
-  items_html: list[str] = []
-  for post in posts:
-    items_html.append(f"""            <li class="blog-list-item">
-              <div class="post-meta">
-                {post.formatted_date} &mdash; Written by {html.escape(post.author)} &bull; {html.escape(post.category)}
-              </div>
-              <h3>
-                <a href="/blog/{post.slug}.html">{html.escape(post.title)}</a>
-              </h3>
-              <p>
-                {html.escape(post.summary)}
-              </p>
-            </li>""")
-
-  list_block = "\n".join(items_html)
-
-  return f"""<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Blog posts by Feras Aldahlawi (frs)." />
-    <title>Feras's Blog - Notes</title>
-{HEAD_ASSETS_HTML}
-  </head>
-  <body>
-    <div class="academic-container">
-{HEADER_HTML}
-      
-{nav_html}
-
-      <div class="academic-layout">
-{sidebar_html}
-
-        <main class="academic-main">
-          <h2>Technical Blog & Notes</h2>
-          <p>
-            A collection of engineering articles, notes, and thoughts on media player software, content protection systems, and cryptography.
-          </p>
-
-          <ul class="blog-list">
-{list_block}
-          </ul>
-          
-          <div class="page-footer-nav">
-            <a href="/index.html" class="back-link">&laquo; Back to Home</a>
-          </div>
-        </main>
-      </div>
-
-{FOOTER_HTML}
-    </div>
-  </body>
-</html>
-"""
+  updated, count = re.subn(
+      r"<!-- BLOG_SECTION_START -->.*?<!-- BLOG_SECTION_END -->",
+      replacement,
+      index_html,
+      flags=re.DOTALL,
+  )
+  if count != 1:
+    raise RuntimeError(
+        "Could not find <!-- BLOG_SECTION_START -->...<!-- BLOG_SECTION_END --> in index.html"
+    )
+  return updated
 
 
 def create_new_post(slug: str, title: str | None = None) -> int:
@@ -353,7 +313,7 @@ title: "{post_title}"
 date: {today_str}
 category: Engineering
 author: frs
-summary: "Brief 1-2 sentence summary shown on the blog index page."
+summary: "Brief 1-2 sentence meta description."
 draft: false
 ---
 
@@ -363,13 +323,6 @@ Write your post in **Markdown** here.
 
 - Bullet point 1
 - Bullet point 2
-
-```cpp
-// Code snippet example
-int main() {{
-  return 0;
-}}
-```
 """
   target.write_text(template, encoding="utf-8")
   print(f"Created new Markdown post: {target.relative_to(ROOT)}")
@@ -395,15 +348,12 @@ def build_all(check_only: bool = False) -> tuple[bool, list[Path]]:
       if not check_only:
         out_path.write_text(rendered, encoding="utf-8")
 
-  index_path = BLOG_DIR / "index.html"
-  rendered_index = render_blog_index(published_posts)
-  existing_index = (
-      index_path.read_text(encoding="utf-8") if index_path.exists() else ""
-  )
-  if rendered_index != existing_index:
-    changed_files.append(index_path.relative_to(ROOT))
+  existing_index = INDEX_PATH.read_text(encoding="utf-8")
+  updated_index = update_index_writing_list(published_posts)
+  if updated_index != existing_index:
+    changed_files.append(INDEX_PATH.relative_to(ROOT))
     if not check_only:
-      index_path.write_text(rendered_index, encoding="utf-8")
+      INDEX_PATH.write_text(updated_index, encoding="utf-8")
 
   return bool(changed_files), changed_files
 
