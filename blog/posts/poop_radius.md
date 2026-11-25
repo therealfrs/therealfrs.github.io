@@ -7,6 +7,9 @@ summary: "Poop radius is the radius you can move about without worrying about re
 draft: false
 ---
 
+*Poop radius* [**noun**]: The radius in which a person start to worry about
+defecating.
+
 I've noticed that as I grow older, my poop radius is shrinks. When I was born, it
 was practically `infinite` (in the sense I didn't have to worry about it).
 Every year, it contracts a little more. Now I am at a 25 minutes
